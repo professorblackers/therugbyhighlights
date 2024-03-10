@@ -7,7 +7,7 @@
     </div>
     <div class="container">
         {% for fixture in fixturesToday %}
-            {% if fixture.highlights != 'NULL' %}
+            {% if fixture.highlights != NULL %}
                 <div class="card" onclick="video('{{ fixture.highlights }}')">
                     <div class="team-logo">
                         {% if fixture.league == 'Six Nations' %}
@@ -51,7 +51,7 @@
     </div>
     <div class="container">
         {% for fixture in fixturesYesterday %}
-            {% if fixture.highlights != 'NULL' %}
+            {% if fixture.highlights != NULL %}
                 <div class="card" onclick="video('{{ fixture.highlights }}')">
                     <div class="team-logo">
                         {% if fixture.league == 'Six Nations' %}
@@ -95,7 +95,7 @@
     </div>
     <div class="container">
         {% for fixture in fixturesTwoDaysAgo %}
-            {% if fixture.highlights != 'NULL' %}
+            {% if fixture.highlights != NULL %}
                 <div class="card" onclick="video('{{ fixture.highlights }}')">
                     <div class="team-logo">
                         {% if fixture.league == 'Six Nations' %}
