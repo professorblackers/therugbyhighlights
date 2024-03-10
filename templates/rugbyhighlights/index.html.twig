@@ -8,7 +8,7 @@
     <div class="container">
         {% for fixture in fixturesToday %}
             {% if fixture.highlights != 'NULL' %}
-                <div class="card">
+                <div class="card" onclick="video('{{ fixture.highlights }}')">
                     <div class="team-logo">
                         {% if fixture.league == 'Six Nations' %}
                             <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
             {% else %}
-                <div class="card">
+                <div class="card" onclick="video('{{ fixture.highlights }}')">
                     <div class="team-logo-inactive">
                         {% if fixture.league == 'Six Nations' %}
                             <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
@@ -52,7 +52,7 @@
     <div class="container">
         {% for fixture in fixturesYesterday %}
             {% if fixture.highlights != 'NULL' %}
-                <div class="card">
+                <div class="card" onclick="video('{{ fixture.highlights }}')">
                     <div class="team-logo">
                         {% if fixture.league == 'Six Nations' %}
                             <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
             {% else %}
-                <div class="card">
+                <div class="card" onclick="video('{{ fixture.highlights }}')">
                     <div class="team-logo-inactive">
                         {% if fixture.league == 'Six Nations' %}
                             <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
@@ -96,7 +96,7 @@
     <div class="container">
         {% for fixture in fixturesTwoDaysAgo %}
             {% if fixture.highlights != 'NULL' %}
-                <div class="card">
+                <div class="card" onclick="video('{{ fixture.highlights }}')">
                     <div class="team-logo">
                         {% if fixture.league == 'Six Nations' %}
                             <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
@@ -113,7 +113,7 @@
                     </div>
                 </div>
             {% else %}
-                <div class="card">
+                <div class="card" onclick="video('{{ fixture.highlights }}')">
                     <div class="team-logo-inactive">
                         {% if fixture.league == 'Six Nations' %}
                             <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}" style="filter: grayscale(1)">
@@ -132,4 +132,12 @@
             {% endif %}
         {% endfor %}
     </div>
+    <script>
+        function video(highlights) {
+            $.sweetModal({
+                content: '<iframe width="660" height="415" src="'+highlights+'?&autoplay=1" title="YouTube Video Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
+                theme: $.sweetModal.THEME_DARK
+            });
+        }
+    </script>
 {% endblock %}
