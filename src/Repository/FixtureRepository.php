@@ -21,28 +21,30 @@ class FixtureRepository extends ServiceEntityRepository
         parent::__construct($registry, Fixture::class);
     }
 
-//    /**
-//     * @return Fixture[] Returns an array of Fixture objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('f')
-//            ->andWhere('f.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('f.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function getFixturesToday()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.kickOff > CURRENT_DATE()')
+            ->andWhere('f.kickOff < CURRENT_DATE()+1')
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Fixture
-//    {
-//        return $this->createQueryBuilder('f')
-//            ->andWhere('f.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function getFixturesYesterday()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.kickOff > CURRENT_DATE()-1')
+            ->andWhere('f.kickOff < CURRENT_DATE()')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getFixturesTwoDaysAgo()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.kickOff > CURRENT_DATE()-2')
+            ->andWhere('f.kickOff < CURRENT_DATE()-1')
+            ->getQuery()
+            ->getResult();
+    }
 }

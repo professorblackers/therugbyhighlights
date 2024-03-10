@@ -1,24 +1,135 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <div class="container">
-        <div class="card" style="background-color: #333333; color: #eeeeee; font-size: 50px">
-            March 8th
+        <div class="date-card">
+            {{ "now"|date("F j") }}
         </div>
-        <div class="card">
-            <div class="team-logo">
-                <img src="https://static.flashscore.com/res/image/data/bLEU35Da-UNi0utEa.png" alt="Team 1 Logo">
-            </div>
-            <div class="team-logo">
-                <img src="https://static.flashscore.com/res/image/data/GOdFK4wS-IX9t32yK.png" alt="Team 2 Logo">
-            </div>
+    </div>
+    <div class="container">
+        {% for fixture in fixturesToday %}
+            {% if fixture.highlights != 'NULL' %}
+                <div class="card">
+                    <div class="team-logo">
+                        {% if fixture.league == 'Six Nations' %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                        {% else %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                        {% endif %}
+                    </div>
+                    <div class="team-logo">
+                        {% if fixture.league == 'Six Nations' %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                        {% else %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                        {% endif %}
+                    </div>
+                </div>
+            {% else %}
+                <div class="card" style="background-color: #333333">
+                    <div class="team-logo">
+                        {% if fixture.league == 'Six Nations' %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}" style="filter: brightness(50%)">
+                        {% else %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}" style="filter: brightness(50%)">
+                        {% endif %}
+                    </div>
+                    <div class="team-logo">
+                        {% if fixture.league == 'Six Nations' %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}" style="filter: brightness(50%)">
+                        {% else %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}" style="filter: brightness(50%)">
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="container">
+        <div class="date-card">
+            {{ "now"|date_modify("-1 day")|date("F j") }}
         </div>
-        <div class="card">
-            <div class="team-logo">
-                <img src="https://static.flashscore.com/res/image/data/2HA4wUil-xIGpz3zQ.png" alt="Team 1 Logo">
-            </div>
-            <div class="team-logo">
-                <img src="https://static.flashscore.com/res/image/data/zkRlohdM-YX5imzJn.png" alt="Team 2 Logo">
-            </div>
+    </div>
+    <div class="container">
+        {% for fixture in fixturesYesterday %}
+            {% if fixture.highlights != 'NULL' %}
+                <div class="card">
+                    <div class="team-logo">
+                        {% if fixture.league == 'Six Nations' %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                        {% else %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                        {% endif %}
+                    </div>
+                    <div class="team-logo">
+                        {% if fixture.league == 'Six Nations' %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                        {% else %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                        {% endif %}
+                    </div>
+                </div>
+            {% else %}
+                <div class="card" style="background-color: #333333">
+                    <div class="team-logo">
+                        {% if fixture.league == 'Six Nations' %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}" style="filter: brightness(50%)">
+                        {% else %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}" style="filter: brightness(50%)">
+                        {% endif %}
+                    </div>
+                    <div class="team-logo">
+                        {% if fixture.league == 'Six Nations' %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}" style="filter: brightness(50%)">
+                        {% else %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}" style="filter: brightness(50%)">
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="container">
+        <div class="date-card">
+            {{ "now"|date_modify("-2 day")|date("F j") }}
         </div>
+    </div>
+    <div class="container">
+        {% for fixture in fixturesTwoDaysAgo %}
+            {% if fixture.highlights != 'NULL' %}
+                <div class="card">
+                    <div class="team-logo">
+                        {% if fixture.league == 'Six Nations' %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                        {% else %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                        {% endif %}
+                    </div>
+                    <div class="team-logo">
+                        {% if fixture.league == 'Six Nations' %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                        {% else %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                        {% endif %}
+                    </div>
+                </div>
+            {% else %}
+                <div class="card" style="background-color: #333333">
+                    <div class="team-logo">
+                        {% if fixture.league == 'Six Nations' %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}" style="filter: brightness(50%)">
+                        {% else %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}" style="filter: brightness(50%)">
+                        {% endif %}
+                    </div>
+                    <div class="team-logo">
+                        {% if fixture.league == 'Six Nations' %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}" style="filter: brightness(50%)">
+                        {% else %}
+                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}" style="filter: brightness(50%)">
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
     </div>
 {% endblock %}
