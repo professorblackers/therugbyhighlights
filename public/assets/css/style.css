@@ -68,7 +68,6 @@ header{
 }
 
 @media (max-width:767px)  {
-    /* smartphones, iPhone, portrait 480x320 phones */
     .video-player {
         width: 315px;
     }
