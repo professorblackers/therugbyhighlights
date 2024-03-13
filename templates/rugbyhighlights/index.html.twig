@@ -1,137 +1,139 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="container">
-        <div class="date-card">
-            {{ "now"|date("F j") }}
+    <section>
+        <div class="container">
+            <div class="date-card">
+                {{ "now"|date("F j") }}
+            </div>
         </div>
-    </div>
-    <div class="container">
-        {% for fixture in fixturesToday %}
-            {% if fixture.highlights != NULL %}
-                <div class="card" onclick="video('{{ fixture.highlights }}')">
-                    <div class="team-logo">
-                        {% if fixture.league == 'Six Nations' %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
-                        {% else %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                        {% endif %}
+        <div class="container">
+            {% for fixture in fixturesToday %}
+                {% if fixture.highlights != NULL %}
+                    <div class="card" onclick="video('{{ fixture.highlights }}')">
+                        <div class="team-logo">
+                            {% if fixture.league == 'Six Nations' %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                            {% else %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                            {% endif %}
+                        </div>
+                        <div class="team-logo">
+                            {% if fixture.league == 'Six Nations' %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                            {% else %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                            {% endif %}
+                        </div>
                     </div>
-                    <div class="team-logo">
-                        {% if fixture.league == 'Six Nations' %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
-                        {% else %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
-                        {% endif %}
+                {% else %}
+                    <div class="card">
+                        <div class="team-logo-inactive">
+                            {% if fixture.league == 'Six Nations' %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                            {% else %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                            {% endif %}
+                        </div>
+                        <div class="team-logo-inactive">
+                            {% if fixture.league == 'Six Nations' %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                            {% else %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
-            {% else %}
-                <div class="card">
-                    <div class="team-logo-inactive">
-                        {% if fixture.league == 'Six Nations' %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
-                        {% else %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                        {% endif %}
-                    </div>
-                    <div class="team-logo-inactive">
-                        {% if fixture.league == 'Six Nations' %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
-                        {% else %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
-                        {% endif %}
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-    <div class="container">
-        <div class="date-card">
-            {{ "now"|date_modify("-1 day")|date("F j") }}
+                {% endif %}
+            {% endfor %}
         </div>
-    </div>
-    <div class="container">
-        {% for fixture in fixturesYesterday %}
-            {% if fixture.highlights != NULL %}
-                <div class="card" onclick="video('{{ fixture.highlights }}')">
-                    <div class="team-logo">
-                        {% if fixture.league == 'Six Nations' %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
-                        {% else %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                        {% endif %}
-                    </div>
-                    <div class="team-logo">
-                        {% if fixture.league == 'Six Nations' %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
-                        {% else %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
-                        {% endif %}
-                    </div>
-                </div>
-            {% else %}
-                <div class="card">
-                    <div class="team-logo-inactive">
-                        {% if fixture.league == 'Six Nations' %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
-                        {% else %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                        {% endif %}
-                    </div>
-                    <div class="team-logo-inactive">
-                        {% if fixture.league == 'Six Nations' %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
-                        {% else %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
-                        {% endif %}
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-    <div class="container">
-        <div class="date-card">
-            {{ "now"|date_modify("-2 day")|date("F j") }}
+        <div class="container">
+            <div class="date-card">
+                {{ "now"|date_modify("-1 day")|date("F j") }}
+            </div>
         </div>
-    </div>
-    <div class="container">
-        {% for fixture in fixturesTwoDaysAgo %}
-            {% if fixture.highlights != NULL %}
-                <div class="card" onclick="video('{{ fixture.highlights }}')">
-                    <div class="team-logo">
-                        {% if fixture.league == 'Six Nations' %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
-                        {% else %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                        {% endif %}
+        <div class="container">
+            {% for fixture in fixturesYesterday %}
+                {% if fixture.highlights != NULL %}
+                    <div class="card" onclick="video('{{ fixture.highlights }}')">
+                        <div class="team-logo">
+                            {% if fixture.league == 'Six Nations' %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                            {% else %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                            {% endif %}
+                        </div>
+                        <div class="team-logo">
+                            {% if fixture.league == 'Six Nations' %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                            {% else %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                            {% endif %}
+                        </div>
                     </div>
-                    <div class="team-logo">
-                        {% if fixture.league == 'Six Nations' %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
-                        {% else %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
-                        {% endif %}
+                {% else %}
+                    <div class="card">
+                        <div class="team-logo-inactive">
+                            {% if fixture.league == 'Six Nations' %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                            {% else %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                            {% endif %}
+                        </div>
+                        <div class="team-logo-inactive">
+                            {% if fixture.league == 'Six Nations' %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                            {% else %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
-            {% else %}
-                <div class="card">
-                    <div class="team-logo-inactive">
-                        {% if fixture.league == 'Six Nations' %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}" style="filter: grayscale(1)">
-                        {% else %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}" style="filter: grayscale(1)">
-                        {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="container">
+            <div class="date-card">
+                {{ "now"|date_modify("-2 day")|date("F j") }}
+            </div>
+        </div>
+        <div class="container">
+            {% for fixture in fixturesTwoDaysAgo %}
+                {% if fixture.highlights != NULL %}
+                    <div class="card" onclick="video('{{ fixture.highlights }}')">
+                        <div class="team-logo">
+                            {% if fixture.league == 'Six Nations' %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                            {% else %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                            {% endif %}
+                        </div>
+                        <div class="team-logo">
+                            {% if fixture.league == 'Six Nations' %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                            {% else %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                            {% endif %}
+                        </div>
                     </div>
-                    <div class="team-logo-inactive">
-                        {% if fixture.league == 'Six Nations' %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}" style="filter: grayscale(1)">
-                        {% else %}
-                            <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}" style="filter: grayscale(1)">
-                        {% endif %}
+                {% else %}
+                    <div class="card">
+                        <div class="team-logo-inactive">
+                            {% if fixture.league == 'Six Nations' %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}" style="filter: grayscale(1)">
+                            {% else %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}" style="filter: grayscale(1)">
+                            {% endif %}
+                        </div>
+                        <div class="team-logo-inactive">
+                            {% if fixture.league == 'Six Nations' %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}" style="filter: grayscale(1)">
+                            {% else %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}" style="filter: grayscale(1)">
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
     <script>
         function video(highlights) {
             $.sweetModal({

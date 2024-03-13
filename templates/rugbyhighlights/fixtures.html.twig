@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <section>
+        <div class="container">
+            {% for fixture in fixtures %}
+                <div class="fixture-card">
+                    <div class="team-logos">
+                        <div class="team-logo">
+                            {% if fixture.league == 'Six Nations' %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                            {% else %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                            {% endif %}
+                        </div>
+                        <div class="team-logo">
+                            {% if fixture.league == 'Six Nations' %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                            {% else %}
+                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="kickoff-time">
+                        <p>{{ fixture.kickOff|date("F j, Y, g:i a") }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

@@ -47,4 +47,13 @@ class FixtureRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getUpcomingFixtures()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.kickOff > CURRENT_DATE()')
+            ->orderBy('f.kickOff', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }
