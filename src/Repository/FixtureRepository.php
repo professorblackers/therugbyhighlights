@@ -56,4 +56,13 @@ class FixtureRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getPastFixtures()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.kickOff < CURRENT_DATE()')
+            ->orderBy('f.kickOff', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }
