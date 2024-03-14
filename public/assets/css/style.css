@@ -61,18 +61,6 @@ header.sticky{
     font-size: 50px;
 }
 
-.card {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    margin-left: 10px;
-}
-
 .team-logo {
     padding: 10px;
 }
@@ -144,6 +132,10 @@ section{
 }
 
 .kickoff-time {
+    margin-top: auto;
+}
+
+.league-name {
     margin-top: auto;
 }
 

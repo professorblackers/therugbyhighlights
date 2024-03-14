@@ -4,6 +4,9 @@
         <div class="container">
             {% for fixture in fixtures %}
                 <div class="fixture-card">
+                    <div class="league-name">
+                        <p>{{ fixture.league }}</p>
+                    </div>
                     <div class="team-logos">
                         <div class="team-logo">
                             {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}

@@ -9,61 +9,71 @@
         <div class="container">
             {% for fixture in fixturesToday %}
                 {% if fixture.highlights != NULL %}
-                    <div class="card" onclick="video('{{ fixture.highlights }}')">
-                        <div class="team-logo">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.homeTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                                {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
-                                {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                            {% endif %}
+                    <div class="fixture-card" onclick="video('{{ fixture.highlights }}')">
+                        <div class="league-name">
+                            <p>{{ fixture.league }}</p>
                         </div>
-                        <div class="team-logo">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.awayTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                        <div class="team-logos">
+                            <div class="team-logo">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.homeTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
+                                    {% endif %}
                                 {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
                                 {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
-                            {% endif %}
+                            </div>
+                            <div class="team-logo">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.awayTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    {% endif %}
+                                {% else %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 {% else %}
-                    <div class="card">
-                        <div class="team-logo-inactive">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.homeTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                                {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
-                                {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                            {% endif %}
+                    <div class="fixture-card">
+                        <div class="league-name">
+                            <p>{{ fixture.league }}</p>
                         </div>
-                        <div class="team-logo-inactive">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.awayTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                        <div class="team-logos">
+                            <div class="team-logo-inactive">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.homeTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
+                                    {% endif %}
                                 {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
                                 {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
-                            {% endif %}
+                            </div>
+                            <div class="team-logo-inactive">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.awayTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    {% endif %}
+                                {% else %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 {% endif %}
@@ -77,61 +87,71 @@
         <div class="container">
             {% for fixture in fixturesYesterday %}
                 {% if fixture.highlights != NULL %}
-                    <div class="card" onclick="video('{{ fixture.highlights }}')">
-                        <div class="team-logo">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.homeTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                                {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
-                                {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                            {% endif %}
+                    <div class="fixture-card" onclick="video('{{ fixture.highlights }}')">
+                        <div class="league-name">
+                            <p>{{ fixture.league }}</p>
                         </div>
-                        <div class="team-logo">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.awayTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                        <div class="team-logos">
+                            <div class="team-logo">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.homeTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
+                                    {% endif %}
                                 {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
                                 {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
-                            {% endif %}
+                            </div>
+                            <div class="team-logo">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.awayTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    {% endif %}
+                                {% else %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 {% else %}
-                    <div class="card">
-                        <div class="team-logo-inactive">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.homeTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                                {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
-                                {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                            {% endif %}
+                    <div class="fixture-card">
+                        <div class="league-name">
+                            <p>{{ fixture.league }}</p>
                         </div>
-                        <div class="team-logo-inactive">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.awayTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                        <div class="team-logos">
+                            <div class="team-logo-inactive">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.homeTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
+                                    {% endif %}
                                 {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
                                 {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
-                            {% endif %}
+                            </div>
+                            <div class="team-logo-inactive">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.awayTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    {% endif %}
+                                {% else %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 {% endif %}
@@ -145,61 +165,71 @@
         <div class="container">
             {% for fixture in fixturesTwoDaysAgo %}
                 {% if fixture.highlights != NULL %}
-                    <div class="card" onclick="video('{{ fixture.highlights }}')">
-                        <div class="team-logo">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.homeTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                                {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
-                                {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                            {% endif %}
+                    <div class="fixture-card" onclick="video('{{ fixture.highlights }}')">
+                        <div class="league-name">
+                            <p>{{ fixture.league }}</p>
                         </div>
-                        <div class="team-logo">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.awayTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                        <div class="team-logos">
+                            <div class="team-logo">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.homeTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
+                                    {% endif %}
                                 {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
                                 {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
-                            {% endif %}
+                            </div>
+                            <div class="team-logo">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.awayTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    {% endif %}
+                                {% else %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 {% else %}
-                    <div class="card">
-                        <div class="team-logo-inactive">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.homeTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                                {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
-                                {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                            {% endif %}
+                    <div class="fixture-card">
+                        <div class="league-name">
+                            <p>{{ fixture.league }}</p>
                         </div>
-                        <div class="team-logo-inactive">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.awayTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                        <div class="team-logos">
+                            <div class="team-logo-inactive">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.homeTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
+                                    {% endif %}
                                 {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
                                 {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
-                            {% endif %}
+                            </div>
+                            <div class="team-logo-inactive">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.awayTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    {% endif %}
+                                {% else %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 {% endif %}
@@ -213,61 +243,71 @@
         <div class="container">
             {% for fixture in fixturesThreeDaysAgo %}
                 {% if fixture.highlights != NULL %}
-                    <div class="card" onclick="video('{{ fixture.highlights }}')">
-                        <div class="team-logo">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.homeTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                                {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
-                                {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                            {% endif %}
+                    <div class="fixture-card" onclick="video('{{ fixture.highlights }}')">
+                        <div class="league-name">
+                            <p>{{ fixture.league }}</p>
                         </div>
-                        <div class="team-logo">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.awayTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                        <div class="team-logos">
+                            <div class="team-logo">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.homeTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
+                                    {% endif %}
                                 {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
                                 {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
-                            {% endif %}
+                            </div>
+                            <div class="team-logo">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.awayTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    {% endif %}
+                                {% else %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 {% else %}
-                    <div class="card">
-                        <div class="team-logo-inactive">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.homeTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                                {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
-                                {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                            {% endif %}
+                    <div class="fixture-card">
+                        <div class="league-name">
+                            <p>{{ fixture.league }}</p>
                         </div>
-                        <div class="team-logo-inactive">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.awayTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                        <div class="team-logos">
+                            <div class="team-logo-inactive">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.homeTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
+                                    {% endif %}
                                 {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
                                 {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
-                            {% endif %}
+                            </div>
+                            <div class="team-logo-inactive">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.awayTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    {% endif %}
+                                {% else %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 {% endif %}
@@ -281,61 +321,71 @@
         <div class="container">
             {% for fixture in fixturesFourDaysAgo %}
                 {% if fixture.highlights != NULL %}
-                    <div class="card" onclick="video('{{ fixture.highlights }}')">
-                        <div class="team-logo">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.homeTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                                {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
-                                {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                            {% endif %}
+                    <div class="fixture-card" onclick="video('{{ fixture.highlights }}')">
+                        <div class="league-name">
+                            <p>{{ fixture.league }}</p>
                         </div>
-                        <div class="team-logo">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.awayTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                        <div class="team-logos">
+                            <div class="team-logo">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.homeTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
+                                    {% endif %}
                                 {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
                                 {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
-                            {% endif %}
+                            </div>
+                            <div class="team-logo">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.awayTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    {% endif %}
+                                {% else %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 {% else %}
-                    <div class="card">
-                        <div class="team-logo-inactive">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.homeTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                                {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
-                                {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
-                            {% endif %}
+                    <div class="fixture-card">
+                        <div class="league-name">
+                            <p>{{ fixture.league }}</p>
                         </div>
-                        <div class="team-logo-inactive">
-                            {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
-                            {% elseif fixture.league == 'Premiership Rugby' %}
-                                {% if fixture.awayTeam == 'Newcastle Falcons' %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                        <div class="team-logos">
+                            <div class="team-logo-inactive">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.webp') }}" alt="{{ fixture.homeTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.homeTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.svg') }}" alt="{{ fixture.homeTeam }}">
+                                    {% endif %}
                                 {% else %}
-                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
                                 {% endif %}
-                            {% else %}
-                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
-                            {% endif %}
+                            </div>
+                            <div class="team-logo-inactive">
+                                {% if (fixture.league == 'Six Nations') or (fixture.league == 'Top 14') %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.webp') }}" alt="{{ fixture.awayTeam }}">
+                                {% elseif fixture.league == 'Premiership Rugby' %}
+                                    {% if fixture.awayTeam == 'Newcastle Falcons' %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                    {% else %}
+                                        <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.svg') }}" alt="{{ fixture.awayTeam }}">
+                                    {% endif %}
+                                {% else %}
+                                    <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 {% endif %}
