@@ -48,6 +48,24 @@ class FixtureRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function getFixturesThreeDaysAgo()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.kickOff > CURRENT_DATE()-3')
+            ->andWhere('f.kickOff < CURRENT_DATE()-1')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getFixturesFourDaysAgo()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.kickOff > CURRENT_DATE()-4')
+            ->andWhere('f.kickOff < CURRENT_DATE()-1')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function getUpcomingFixtures()
     {
         return $this->createQueryBuilder('f')

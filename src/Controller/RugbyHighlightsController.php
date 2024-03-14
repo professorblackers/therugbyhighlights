@@ -15,7 +15,9 @@ class RugbyHighlightsController extends AbstractController
         return $this->render('rugbyhighlights/index.html.twig', [
             'fixturesToday' => $fixtureRepository->getFixturesToday(),
             'fixturesYesterday' => $fixtureRepository->getFixturesYesterday(),
-            'fixturesTwoDaysAgo' => $fixtureRepository->getFixturesTwoDaysAgo()
+            'fixturesTwoDaysAgo' => $fixtureRepository->getFixturesTwoDaysAgo(),
+            'fixturesThreeDaysAgo' => $fixtureRepository->getFixturesThreeDaysAgo(),
+            'fixturesFourDaysAgo' => $fixtureRepository->getFixturesFourDaysAgo(),
         ]);
     }
 
