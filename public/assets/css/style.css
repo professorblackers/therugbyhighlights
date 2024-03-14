@@ -208,4 +208,8 @@ section{
     .title {
         margin-left: 65px;
     }
+
+    .hide-header {
+        display: none;
+    }
 }

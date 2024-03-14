@@ -29,10 +29,26 @@
     </section>
     <script>
         function video(highlights) {
+            const header = document.querySelector("header");
+
+            header.classList.toggle ("hide-header");
+
             $.sweetModal({
                 content: '<iframe width="660" height="415" src="'+highlights+'?&autoplay=1" title="YouTube Video Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="video-player"></iframe>',
                 theme: $.sweetModal.THEME_DARK
             });
+
+            const modalCloseButton = document.getElementsByClassName("sweet-modal-close-link");
+
+            for (let i = 0; i < modalCloseButton.length; i++) {
+                modalCloseButton[i].addEventListener("click", function() {
+                    closeModal(header);
+                });
+            }
+        }
+
+        function closeModal(header) {
+            header.classList.remove ("hide-header");
         }
     </script>
 {% endblock %}
