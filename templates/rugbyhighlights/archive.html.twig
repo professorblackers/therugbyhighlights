@@ -3,7 +3,11 @@
     <section>
         <div class="container">
             {% for fixture in fixtures %}
-                <div class="fixture-card" onclick="video('{{ fixture.highlights }}')">
+                {% if fixture.highlights != NULL %}
+                    <div class="fixture-card" onclick="video('{{ fixture.highlights }}')">
+                {% else %}
+                    <div class="fixture-card" onclick="videoAlt('{{ fixture.homeTeam }}', '{{ fixture.awayTeam }}')">
+                {% endif %}
                     <div class="league-name">
                         <p>{{ fixture.league }}</p>
                     </div>
@@ -30,6 +34,26 @@
 
             $.sweetModal({
                 content: '<iframe width="660" height="415" src="'+highlights+'?&autoplay=1" title="YouTube Video Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="video-player"></iframe>',
+                theme: $.sweetModal.THEME_DARK
+            });
+
+            const modalCloseButton = document.getElementsByClassName("sweet-modal-close-link");
+
+            for (let i = 0; i < modalCloseButton.length; i++) {
+                modalCloseButton[i].addEventListener("click", function() {
+                    closeModal(header);
+                });
+            }
+        }
+
+        function videoAlt(homeTeam, awayTeam) {
+            const header = document.querySelector("header");
+
+            header.classList.toggle ("hide-header");
+
+            $.sweetModal({
+                content: '<video width="660" height="415" controls><source src="/assets/video/'+homeTeam+' v '+awayTeam+'.mp4" type="video/mp4"></video>',
+
                 theme: $.sweetModal.THEME_DARK
             });
 

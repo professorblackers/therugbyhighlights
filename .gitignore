@@ -11,3 +11,4 @@
 .env
 .idea
 /migrations/
+/public/assets/video/
