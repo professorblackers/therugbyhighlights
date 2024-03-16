@@ -33,7 +33,7 @@ class RugbyHighlightsController extends AbstractController
     public function archive(FixtureRepository $fixtureRepository): Response
     {
         return $this->render('rugbyhighlights/archive.html.twig', [
-            'fixtures' => $fixtureRepository->getPastFixtures(),
+            'fixtures' => $fixtureRepository->getPastFixtures(5),
         ]);
     }
 }

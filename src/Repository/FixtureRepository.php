@@ -71,13 +71,14 @@ class FixtureRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function getPastFixtures()
+    public function getPastFixtures($daysAgo)
     {
-        $today = new DateTime();
+        $date = new DateTime();
+        $date->modify('-' . $daysAgo . ' days');
 
         return $this->createQueryBuilder('f')
-            ->andWhere('f.kickOff < :today')
-            ->setParameter('today', $today)
+            ->andWhere('f.kickOff < :date')
+            ->setParameter('date', $date)
             ->orderBy('f.kickOff', 'DESC')
             ->getQuery()
             ->getResult();
