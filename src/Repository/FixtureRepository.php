@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Fixture;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use DateTime;
 
 /**
  * @extends ServiceEntityRepository<Fixture>
@@ -21,55 +22,50 @@ class FixtureRepository extends ServiceEntityRepository
         parent::__construct($registry, Fixture::class);
     }
 
+    private function getFixturesByDateRange(DateTime $startOfDay, DateTime $endOfDay)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.kickOff BETWEEN :startOfDay AND :endOfDay')
+            ->setParameter('startOfDay', $startOfDay)
+            ->setParameter('endOfDay', $endOfDay)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function getFixturesToday()
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.kickOff > CURRENT_DATE()')
-            ->andWhere('f.kickOff < CURRENT_DATE()+1')
-            ->getQuery()
-            ->getResult();
+        $today = new DateTime();
+
+        $startOfDay = clone $today;
+        $startOfDay->setTime(0, 0, 0);
+
+        $endOfDay = clone $today;
+        $endOfDay->setTime(23, 59, 59);
+
+        return $this->getFixturesByDateRange($startOfDay, $endOfDay);
     }
 
-    public function getFixturesYesterday()
+    public function getFixturesByDaysAgo($daysAgo)
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.kickOff > CURRENT_DATE()-1')
-            ->andWhere('f.kickOff < CURRENT_DATE()')
-            ->getQuery()
-            ->getResult();
-    }
+        $date = new DateTime();
+        $date->modify('-' . $daysAgo . ' days');
 
-    public function getFixturesTwoDaysAgo()
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.kickOff > CURRENT_DATE()-2')
-            ->andWhere('f.kickOff < CURRENT_DATE()-1')
-            ->getQuery()
-            ->getResult();
-    }
+        $startOfDay = clone $date;
+        $startOfDay->setTime(0, 0, 0);
 
-    public function getFixturesThreeDaysAgo()
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.kickOff > CURRENT_DATE()-3')
-            ->andWhere('f.kickOff < CURRENT_DATE()-1')
-            ->getQuery()
-            ->getResult();
-    }
+        $endOfDay = clone $date;
+        $endOfDay->setTime(23, 59, 59);
 
-    public function getFixturesFourDaysAgo()
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.kickOff > CURRENT_DATE()-4')
-            ->andWhere('f.kickOff < CURRENT_DATE()-1')
-            ->getQuery()
-            ->getResult();
+        return $this->getFixturesByDateRange($startOfDay, $endOfDay);
     }
 
     public function getUpcomingFixtures()
     {
+        $today = new DateTime();
+
         return $this->createQueryBuilder('f')
-            ->andWhere('f.kickOff > CURRENT_DATE()')
+            ->andWhere('f.kickOff > :today')
+            ->setParameter('today', $today)
             ->orderBy('f.kickOff', 'ASC')
             ->getQuery()
             ->getResult();
@@ -77,8 +73,11 @@ class FixtureRepository extends ServiceEntityRepository
 
     public function getPastFixtures()
     {
+        $today = new DateTime();
+
         return $this->createQueryBuilder('f')
-            ->andWhere('f.kickOff < CURRENT_DATE()')
+            ->andWhere('f.kickOff < :today')
+            ->setParameter('today', $today)
             ->orderBy('f.kickOff', 'DESC')
             ->getQuery()
             ->getResult();

@@ -14,10 +14,10 @@ class RugbyHighlightsController extends AbstractController
     {
         return $this->render('rugbyhighlights/index.html.twig', [
             'fixturesToday' => $fixtureRepository->getFixturesToday(),
-            'fixturesYesterday' => $fixtureRepository->getFixturesYesterday(),
-            'fixturesTwoDaysAgo' => $fixtureRepository->getFixturesTwoDaysAgo(),
-            'fixturesThreeDaysAgo' => $fixtureRepository->getFixturesThreeDaysAgo(),
-            'fixturesFourDaysAgo' => $fixtureRepository->getFixturesFourDaysAgo(),
+            'fixturesYesterday' => $fixtureRepository->getFixturesByDaysAgo(1),
+            'fixturesTwoDaysAgo' => $fixtureRepository->getFixturesByDaysAgo(2),
+            'fixturesThreeDaysAgo' => $fixtureRepository->getFixturesByDaysAgo(3),
+            'fixturesFourDaysAgo' => $fixtureRepository->getFixturesByDaysAgo(4),
         ]);
     }
 
