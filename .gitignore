@@ -12,3 +12,4 @@
 .idea
 /migrations/
 /public/assets/video/
+/src/DataFixtures/
