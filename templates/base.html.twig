@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}The Rugby Highlights{% endblock %}</title>
+    <link rel="icon" href="{% block icon %}{{ asset('/assets/img/favicon.ico') }}{% endblock %}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +17,8 @@
         <a href="{{ path('rugbyhighlights') }}" class="title">
             The Rugby Highlights
         </a>
+
+
 
         <div class="bx bx-menu" id="menu-icon"></div>
 
