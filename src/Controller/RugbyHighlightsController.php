@@ -36,4 +36,12 @@ class RugbyHighlightsController extends AbstractController
             'fixtures' => $fixtureRepository->getPastFixtures(5),
         ]);
     }
+
+    #[Route('/admin', name: 'admin')]
+    public function admin(FixtureRepository $fixtureRepository): Response
+    {
+        return $this->render('rugbyhighlights/admin.html.twig', [
+            'fixtures' => $fixtureRepository->findAll(),
+        ]);
+    }
 }
