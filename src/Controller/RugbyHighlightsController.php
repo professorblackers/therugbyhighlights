@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Fixture;
+use App\Form\FixtureForm;
 use App\Repository\FixtureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -41,7 +44,25 @@ class RugbyHighlightsController extends AbstractController
     public function admin(FixtureRepository $fixtureRepository): Response
     {
         return $this->render('rugbyhighlights/admin.html.twig', [
-            'fixtures' => $fixtureRepository->findAll(),
+            'fixtures' => $fixtureRepository->getFixturesMissingHighlights()
+        ]);
+    }
+
+    #[Route('/admin/fixture/{id}', name: 'fixtureAdmin')]
+    public function fixtureAdmin(int $id, Request $request, FixtureRepository $fixtureRepository): Response
+    {
+        $fixture = $fixtureRepository->getFixtureById($id);
+        $form = $this->createForm(FixtureForm::class, $fixture[0]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $fixtureRepository->updateFixture($fixture[0]);
+        }
+
+        return $this->render('rugbyhighlights/fixtureAdmin.html.twig', [
+            'form' => $form->createView(),
+            'fixture' => $fixture
         ]);
     }
 }

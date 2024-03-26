@@ -12,7 +12,7 @@ class Fixture
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    public $id = null;
 
     #[ORM\Column(length: 255)]
     private ?string $league = null;

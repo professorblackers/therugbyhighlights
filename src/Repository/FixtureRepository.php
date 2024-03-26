@@ -83,4 +83,28 @@ class FixtureRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getFixturesMissingHighlights()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.highlights IS NULL')
+            ->orderBy('f.kickOff', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getFixtureById(int $id)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function updateFixture(Fixture $fixture)
+    {
+        $this->getEntityManager()->persist($fixture);
+        $this->getEntityManager()->flush();
+    }
 }

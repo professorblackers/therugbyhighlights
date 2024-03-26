@@ -2,7 +2,26 @@
 {% block body %}
     <section>
         <div class="container">
-
+            {% for fixture in fixtures %}
+                <a href="/admin/fixture/{{ fixture.getId }}">
+                    <div class="fixture-card">
+                        <div class="league-name">
+                            <p>{{ fixture.league }}</p>
+                        </div>
+                        <div class="team-logos">
+                            <div class="team-logo">
+                                <img src="{{ asset('/assets/img/' ~ fixture.homeTeam ~ '.png') }}" alt="{{ fixture.homeTeam }}">
+                            </div>
+                            <div class="team-logo">
+                                <img src="{{ asset('/assets/img/' ~ fixture.awayTeam ~ '.png') }}" alt="{{ fixture.awayTeam }}">
+                            </div>
+                        </div>
+                        <div class="kickoff-time">
+                            <p>{{ fixture.kickOff|date("F j, Y, g:i a") }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
         </div>
     </section>
     <script>
