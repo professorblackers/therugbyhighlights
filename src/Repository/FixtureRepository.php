@@ -84,10 +84,16 @@ class FixtureRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function getFixturesMissingHighlights()
+    /**
+     * Query excludes fixture with ID 402 (Ospreys v Cardiff) as highlights were not available on the URC YouTube Channel
+     *
+     * @return mixed
+     */
+    public function getFixturesMissingHighlights(): mixed
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.highlights IS NULL')
+            ->andWhere('f.id != 402')
             ->orderBy('f.kickOff', 'ASC')
             ->getQuery()
             ->getResult();
