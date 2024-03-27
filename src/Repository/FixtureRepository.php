@@ -85,7 +85,7 @@ class FixtureRepository extends ServiceEntityRepository
     }
 
     /**
-     * Query excludes fixture with ID 402 (Ospreys v Cardiff) as highlights were not available on the URC YouTube Channel
+     * Query excludes fixture with ID 263 (Ospreys v Cardiff) as highlights were not available on the URC YouTube Channel
      *
      * @return mixed
      */
@@ -93,7 +93,7 @@ class FixtureRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.highlights IS NULL')
-            ->andWhere('f.id != 402')
+            ->andWhere('f.id != 263')
             ->orderBy('f.kickOff', 'ASC')
             ->getQuery()
             ->getResult();
