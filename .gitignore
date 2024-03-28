@@ -8,3 +8,8 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+.env
+.idea
+/migrations/
+/public/assets/video/
+/src/DataFixtures/
