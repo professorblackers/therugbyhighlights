@@ -52,4 +52,24 @@ class FixtureRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * Get past fixtures based on the $daysAgo parameter
+     *
+     * @param $daysAgo
+     * @return mixed
+     */
+    public function getPastFixtures($daysAgo): mixed
+    {
+        $date = new DateTime();
+        $date->modify('-' . $daysAgo . ' days');
+
+        return $this->createQueryBuilder('f')
+            ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights')
+            ->andWhere('f.kickOff < :date')
+            ->setParameter('date', $date)
+            ->orderBy('f.kickOff', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

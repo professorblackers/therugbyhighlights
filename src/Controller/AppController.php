@@ -18,12 +18,6 @@ class AppController extends AbstractController
         ]);
     }
 
-    #[Route('/rugby/getFixtures/', name: 'getFixtures')]
-    public function getFixtures(FixtureRepository $fixtureRepository): JsonResponse
-    {
-        return new JsonResponse($fixtureRepository->getFixtures());
-    }
-
     #[Route('/fixtures', name: 'fixtures')]
     public function fixtures(FixtureRepository $fixtureRepository): Response
     {
@@ -31,9 +25,28 @@ class AppController extends AbstractController
         ]);
     }
 
+    #[Route('/archive', name: 'archive')]
+    public function archive(FixtureRepository $fixtureRepository): Response
+    {
+        return $this->render('archive.html.twig', [
+        ]);
+    }
+
+    #[Route('/rugby/getFixtures/', name: 'getFixtures')]
+    public function getFixtures(FixtureRepository $fixtureRepository): JsonResponse
+    {
+        return new JsonResponse($fixtureRepository->getFixtures());
+    }
+
     #[Route('/rugby/getUpcomingFixtures/', name: 'getUpcomingFixtures')]
     public function getUpcomingFixtures(FixtureRepository $fixtureRepository): JsonResponse
     {
         return new JsonResponse($fixtureRepository->getUpcomingFixtures());
+    }
+
+    #[Route('/rugby/getPastFixtures/', name: 'getPastFixtures')]
+    public function getPastFixtures(FixtureRepository $fixtureRepository): JsonResponse
+    {
+        return new JsonResponse($fixtureRepository->getPastFixtures(5));
     }
 }

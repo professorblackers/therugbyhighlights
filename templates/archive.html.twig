@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}The Rugby Highlights{% endblock %}
+
+{% block body %}
+    <div id="archive"></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {{ encore_entry_script_tags('archive') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('archive') }}
+{% endblock %}
