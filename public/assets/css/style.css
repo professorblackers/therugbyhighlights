@@ -1,0 +1,214 @@
+*{
+    list-style: none;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Russo One', sans-serif;
+    background: #ECE9E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+header{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    padding: 5px 1%;
+    transition: ease .40s;
+}
+
+header.sticky{
+    background: #eeeeee;
+    box-shadow: rgba(33,35,38, 0.1) 0 10px 10px -10px;
+}
+
+.title {
+    color: #333333;
+    font-family: 'Russo One',sans-serif;
+    font-size: 50px;
+    line-height: 70px;
+    text-decoration: none;
+    margin-left: 40px;
+}
+
+.container {
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+}
+
+.date-card {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin-left: 10px;
+    background-color: #333333;
+    color: #eeeeee;
+    font-size: 50px;
+}
+
+.team-logo {
+    padding: 10px;
+}
+
+.team-logo img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.inactive-fixture {
+    -webkit-filter: grayscale(1);
+}
+
+#menu-icon{
+    color: #333333;
+    font-size: 35px;
+    z-index: 10001;
+    cursor: pointer;
+    display: none;
+}
+
+.navbar{
+    display: flex;
+}
+
+.navbar a{
+    color: #333333;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 10px 22px;
+    border-radius: 4px;
+    transition: ease .40s;
+}
+
+.navbar a:hover{
+    background: #FFFFFF;
+    color: #333333;
+    box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
+    border-radius: 4px;
+}
+
+section{
+    padding: 90px 0;
+}
+
+.sticky .navbar a{
+    color: #333333;
+}
+
+.fixture-card {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin-left: 10px;
+}
+
+.team-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.kickoff-time {
+    margin-top: auto;
+}
+
+.league-name {
+    margin-top: auto;
+    text-align: center;
+}
+
+a:link {
+    color: inherit;
+}
+
+a:visited {
+    color: inherit;
+}
+
+@media (max-width:767px)  {
+    .video-player {
+        width: 315px;
+    }
+
+    header{
+        padding: 17px 3%;
+        transition: .2s;
+    }
+
+    #menu-icon{
+        display: block;
+    }
+
+    .menu-icon-close{
+        color: #eeeeee !important;
+    }
+
+    .stick #menu-icon{
+        color: #333333;
+    }
+
+    .sticky .navbar a{
+        color: #eeeeee;
+    }
+
+    .navbar{
+        position: absolute;
+        top: 0;
+        right: -100%;
+        width: 270px;
+        height: 120vh;
+        background: #333333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 150px 30px;
+        transition: 0.5s all;
+    }
+
+    .navbar a{
+        display: block;
+        margin: 1.2rem 0;
+        color: #eeeeee;
+    }
+
+    .navbar a:hover{
+        color: #333333;
+    }
+
+    .open{
+        right: 0;
+    }
+
+    section{
+        padding: 160px 3%;
+    }
+
+    .title {
+        margin-left: 65px;
+    }
+
+    .hide-header {
+        display: none;
+    }
+}
