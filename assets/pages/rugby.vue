@@ -120,7 +120,7 @@ export default {
     getFixtures: function() {
       $.ajax({
         type: "GET",
-        url: "/rugby/fixtures/",
+        url: "/rugby/getFixtures/",
         success: (data) => {
           this.fixtures = data;
         }

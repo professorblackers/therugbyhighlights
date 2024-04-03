@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}The Rugby Highlights{% endblock %}
+
+{% block body %}
+    <div id="fixtures"></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {{ encore_entry_script_tags('fixtures') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('fixtures') }}
+{% endblock %}

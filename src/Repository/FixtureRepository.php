@@ -22,10 +22,33 @@ class FixtureRepository extends ServiceEntityRepository
         parent::__construct($registry, Fixture::class);
     }
 
-    public function getFixtures()
+    /**
+     * Get fixtures
+     *
+     * @return mixed
+     */
+    public function getFixtures(): mixed
     {
         return $this->createQueryBuilder('f')
             ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Get upcoming fixtures
+     *
+     * @return mixed
+     */
+    public function getUpcomingFixtures(): mixed
+    {
+        $today = new DateTime();
+
+        return $this->createQueryBuilder('f')
+            ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights')
+            ->andWhere('f.kickOff > :today')
+            ->setParameter('today', $today)
+            ->orderBy('f.kickOff', 'ASC')
             ->getQuery()
             ->getResult();
     }

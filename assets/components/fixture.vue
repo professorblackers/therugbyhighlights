@@ -7,12 +7,10 @@
         </div>
         <div class="team-logos">
           <div class="team-logo">
-            <img v-if="fixture.highlights" :src="'/assets/img/' + fixture.homeTeam + '.png'" alt="{{ fixture.homeTeam }}">
-            <img v-else :src="'/assets/img/' + fixture.homeTeam + '.png'" alt="{{ fixture.homeTeam }}" class="inactive-fixture">
+            <img :src="'/assets/img/' + fixture.homeTeam + '.png'" alt="{{ fixture.homeTeam }}">
           </div>
           <div class="team-logo">
-            <img v-if="fixture.highlights" :src="'/assets/img/' + fixture.awayTeam + '.png'" alt="{{ fixture.awayTeam }}">
-            <img v-else :src="'/assets/img/' + fixture.awayTeam + '.png'" alt="{{ fixture.awayTeam }}" class="inactive-fixture">
+            <img :src="'/assets/img/' + fixture.awayTeam + '.png'" alt="{{ fixture.awayTeam }}">
           </div>
         </div>
       </div>
@@ -22,14 +20,17 @@
         </div>
         <div class="team-logos">
           <div class="team-logo">
-            <img v-if="fixture.highlights" :src="'/assets/img/' + fixture.homeTeam + '.png'" alt="{{ fixture.homeTeam }}">
+            <img v-if="page === 'Fixtures'" :src="'/assets/img/' + fixture.homeTeam + '.png'" alt="{{ fixture.homeTeam }}">
             <img v-else :src="'/assets/img/' + fixture.homeTeam + '.png'" alt="{{ fixture.homeTeam }}" class="inactive-fixture">
           </div>
           <div class="team-logo">
-            <img v-if="fixture.highlights" :src="'/assets/img/' + fixture.awayTeam + '.png'" alt="{{ fixture.awayTeam }}">
+            <img v-if="page === 'Fixtures'" :src="'/assets/img/' + fixture.awayTeam + '.png'" alt="{{ fixture.awayTeam }}">
             <img v-else :src="'/assets/img/' + fixture.awayTeam + '.png'" alt="{{ fixture.awayTeam }}" class="inactive-fixture">
           </div>
         </div>
+      </div>
+      <div v-if="page === 'Fixtures'" class="kickoff-time">
+        <p>{{ formatKickoffTime(fixture.kickOff.date) }}</p>
       </div>
     </div>
   </div>
@@ -38,7 +39,7 @@
 <script>
 export default {
   name: 'Fixture',
-  props: ['fixtures'],
+  props: ['fixtures', 'page'],
   methods: {
     getHighlightsVideo(highlights) {
       const header = document.querySelector("header");
@@ -61,6 +62,11 @@ export default {
       function closeModal(header) {
         header.classList.remove ("hide-header");
       }
+    },
+    formatKickoffTime(dateTimeString) {
+      const options = { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' };
+      const date = new Date(dateTimeString);
+      return date.toLocaleString('en-US', options);
     }
   },
 }

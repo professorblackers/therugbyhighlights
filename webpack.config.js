@@ -22,6 +22,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('rugby', './assets/rugby.js')
+    .addEntry('fixtures', './assets/fixtures.js')
 
     .enableVueLoader()
 

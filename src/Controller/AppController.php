@@ -18,9 +18,22 @@ class AppController extends AbstractController
         ]);
     }
 
-    #[Route('/rugby/fixtures/', name: 'fixtures')]
+    #[Route('/rugby/getFixtures/', name: 'getFixtures')]
     public function getFixtures(FixtureRepository $fixtureRepository): JsonResponse
     {
         return new JsonResponse($fixtureRepository->getFixtures());
+    }
+
+    #[Route('/fixtures', name: 'fixtures')]
+    public function fixtures(FixtureRepository $fixtureRepository): Response
+    {
+        return $this->render('fixtures.html.twig', [
+        ]);
+    }
+
+    #[Route('/rugby/getUpcomingFixtures/', name: 'getUpcomingFixtures')]
+    public function getUpcomingFixtures(FixtureRepository $fixtureRepository): JsonResponse
+    {
+        return new JsonResponse($fixtureRepository->getUpcomingFixtures());
     }
 }
