@@ -117,4 +117,37 @@ class FixtureRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * Get finished fixtures that do not have highlights
+     *
+     * @param string $league
+     * @return mixed
+     */
+    public function getFixturesNoHighlights(string $league): mixed
+    {
+        $today = new DateTime();
+
+        return $this->createQueryBuilder('f')
+            ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights')
+            ->andWhere('f.highlights is NULL')
+            ->andWhere('f.kickOff < :today')
+            ->setParameter('today', $today)
+            ->andWhere('f.league = :league')
+            ->setParameter('league', $league)
+            ->orderBy('f.kickOff', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function update(int $id, string $highlights): Fixture
+    {
+        $fixture = $this->find($id);
+
+        $fixture->setHighlights($highlights);
+
+        $this->getEntityManager()->flush();
+
+        return $fixture;
+    }
 }
