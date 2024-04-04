@@ -44,5 +44,9 @@ class HighlightsCommand extends Command
         $this->youtubeService->getUnitedRugbyChampionshipHighlights(
             $this->youtubeService->connect()
         );
+
+        $this->youtubeService->getSuperRugbyHighlights(
+            $this->youtubeService->connect()
+        );
     }
 }

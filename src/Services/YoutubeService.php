@@ -31,8 +31,8 @@ class YoutubeService
 
     public function getUnitedRugbyChampionshipHighlights(YouTube $service)
     {
-        $response = $service->playlistItems->listPlaylistItems(            'snippet',
-            ['playlistId' => 'UU-S6cXyil4qbIPfb2hrcH4w', 'maxResults' => 20],
+        $response = $service->playlistItems->listPlaylistItems('snippet',
+            ['playlistId' => 'UU-S6cXyil4qbIPfb2hrcH4w', 'maxResults' => 10],
         );
 
         $search = 'Instant Highlights';
@@ -40,6 +40,20 @@ class YoutubeService
         $this->getEmbedUrl(
             $this->getYoutubeTitleAndId($response, $search),
             $this->fixtureRepository->getFixturesNoHighlights('United Rugby Championship')
+        );
+    }
+
+    public function getSuperRugbyHighlights(YouTube $service)
+    {
+        $response = $service->playlistItems->listPlaylistItems('snippet',
+            ['playlistId' => 'UUDOGExGCsrrt_RrGDgLuMww', 'maxResults' => 10],
+        );
+
+        $search = 'Super Rugby Pacific 2024';
+
+        $this->getEmbedUrl(
+            $this->getYoutubeTitleAndId($response, $search),
+            $this->fixtureRepository->getFixturesNoHighlights('Super Rugby')
         );
     }
 
@@ -64,6 +78,18 @@ class YoutubeService
             foreach ($fixtures as $fixture) {
                 if(str_contains($video[0], $fixture['homeTeam']) && str_contains($video[0], $fixture['awayTeam'])) {
                     $this->fixtureRepository->update($fixture['id'], $videoString.$video[1]);
+                }
+
+                if($fixture['homeTeam'] == 'Western Force') {
+                    if(str_contains($video[0], 'Force') && str_contains($video[0], $fixture['awayTeam'])) {
+                        $this->fixtureRepository->update($fixture['id'], $videoString.$video[1]);
+                    }
+                }
+
+                if($fixture['awayTeam'] == 'Western Force') {
+                    if(str_contains($video[0], $fixture['homeTeam']) && str_contains($video[0], 'Force')) {
+                        $this->fixtureRepository->update($fixture['id'], $videoString.$video[1]);
+                    }
                 }
             }
         }
