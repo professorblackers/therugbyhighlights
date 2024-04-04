@@ -47,7 +47,7 @@ class AppController extends AbstractController
     #[Route('/rugby/getPastFixtures/', name: 'getPastFixtures')]
     public function getPastFixtures(FixtureRepository $fixtureRepository): JsonResponse
     {
-        return new JsonResponse($fixtureRepository->getPastFixtures(5));
+        return new JsonResponse($fixtureRepository->getPastFixtures(4));
     }
 
     #[Route('/rugby/fixtures/{value}', name: 'getFilteredFixtures')]
@@ -59,6 +59,6 @@ class AppController extends AbstractController
     #[Route('/rugby/past/fixtures/{value}', name: 'getPastFilteredFixtures')]
     public function getPastFilteredFixtures(FixtureRepository $fixtureRepository, string $value): JsonResponse
     {
-        return new JsonResponse($fixtureRepository->getPastFilteredFixtures($value, 5));
+        return new JsonResponse($fixtureRepository->getPastFilteredFixtures($value, 4));
     }
 }
