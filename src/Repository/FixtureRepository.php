@@ -56,10 +56,10 @@ class FixtureRepository extends ServiceEntityRepository
     /**
      * Get past fixtures based on the $daysAgo parameter
      *
-     * @param $daysAgo
+     * @param int $daysAgo
      * @return mixed
      */
-    public function getPastFixtures($daysAgo): mixed
+    public function getPastFixtures(int $daysAgo): mixed
     {
         $date = new DateTime();
         $date->modify('-' . $daysAgo . ' days');
@@ -68,6 +68,51 @@ class FixtureRepository extends ServiceEntityRepository
             ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights')
             ->andWhere('f.kickOff < :date')
             ->setParameter('date', $date)
+            ->orderBy('f.kickOff', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Get fixtures filtered based on the $value parameter
+     *
+     * @param string $value
+     * @return mixed
+     */
+    public function getFilteredFixtures(string $value): mixed
+    {
+        $today = new DateTime();
+
+        return $this->createQueryBuilder('f')
+            ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights')
+            ->andWhere('f.league = :value')
+            ->setParameter('value', $value)
+            ->andWhere('f.kickOff > :today')
+            ->setParameter('today', $today)
+            ->orderBy('f.kickOff', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Get past fixtures filtered based on the $value parameter
+     *
+     * @param string $value
+     * @param int $daysAgo
+     * @return mixed
+     */
+    public function getPastFilteredFixtures(string $value, int $daysAgo): mixed
+    {
+        $today = new DateTime();
+
+        $today->modify('-' . $daysAgo . ' days');
+
+        return $this->createQueryBuilder('f')
+            ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights')
+            ->andWhere('f.league = :value')
+            ->setParameter('value', $value)
+            ->andWhere('f.kickOff < :date')
+            ->setParameter('date', $today)
             ->orderBy('f.kickOff', 'DESC')
             ->getQuery()
             ->getResult();

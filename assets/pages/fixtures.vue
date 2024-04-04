@@ -1,5 +1,10 @@
 <template>
   <section>
+    <filter-component
+        @filtered-fixtures="filteredFixtures"
+        :page="page"
+    />
+
     <fixture-component
         :fixtures="fixtures"
         :page="page"
@@ -9,6 +14,7 @@
 
 <script>
 import FixtureComponent from '../components/fixture';
+import FilterComponent from '../components/filter';
 
 export default {
   name: 'Fixtures',
@@ -19,10 +25,8 @@ export default {
     };
   },
   components: {
-    FixtureComponent
-  },
-  computed: {
-
+    FixtureComponent,
+    FilterComponent
   },
   methods: {
     getFixtures: function() {
@@ -33,6 +37,9 @@ export default {
           this.fixtures = data;
         }
       })
+    },
+    filteredFixtures(filteredFixtures) {
+      this.fixtures = filteredFixtures;
     }
   },
   created() {

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="fixture-card" v-for="fixture in fixtures" :key="fixture.id">
+    <div class="fixture-card" v-for="fixture in fixtures" :key="fixture.id" :class="'fixture-' + fixture.id">
       <div v-if="fixture.highlights" @click="getHighlightsVideo(fixture.highlights, fixture.homeTeam, fixture.awayTeam)">
         <div class="league-name">
           <p>{{ fixture.league }}</p>
@@ -79,3 +79,25 @@ export default {
   },
 }
 </script>
+
+<style>
+.fixture-279 img {
+  max-width: 122px;
+  max-height: 122px;
+}
+
+.fixture-308 img {
+  max-width: 110px;
+  max-height: 110px;
+}
+
+.fixture-324 img {
+  max-width: 110px;
+  max-height: 110px;
+}
+
+.fixture-262 img {
+  max-width: 110px;
+  max-height: 110px;
+}
+</style>
