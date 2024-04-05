@@ -60,7 +60,7 @@ class YoutubeService
     public function getJapanLeagueOneHighlights(YouTube $service)
     {
         $response = $service->playlistItems->listPlaylistItems('snippet',
-            ['playlistId' => 'UUuIZRMChWOb0JZu7VvhlMWg', 'maxResults' => 40],
+            ['playlistId' => 'UUuIZRMChWOb0JZu7VvhlMWg', 'maxResults' => 8],
         );
 
         $search = '公式ハイライト';
@@ -68,6 +68,20 @@ class YoutubeService
         $this->getEmbedUrl(
             $this->getYoutubeTitleAndId($response, $search),
             $this->fixtureRepository->getFixturesNoHighlights('Japan League One')
+        );
+    }
+
+    public function getPremiershipRugbyHighlights(YouTube $service)
+    {
+        $response = $service->playlistItems->listPlaylistItems('snippet',
+            ['playlistId' => 'UULbW1klIl3T1XCp8hHYZGMw', 'maxResults' => 8],
+        );
+
+        $search = 'HIGHLIGHTS';
+
+        $this->getEmbedUrl(
+            $this->getYoutubeTitleAndId($response, $search),
+            $this->fixtureRepository->getFixturesNoHighlights('Premiership Rugby')
         );
     }
 
