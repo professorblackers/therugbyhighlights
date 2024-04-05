@@ -41,19 +41,23 @@ class HighlightsCommand extends Command
 
     public function getHighlights()
     {
-//        $this->youtubeService->getUnitedRugbyChampionshipHighlights(
-//            $this->youtubeService->connect()
-//        );
-//
-//        $this->youtubeService->getSuperRugbyHighlights(
-//            $this->youtubeService->connect()
-//        );
-//
-//        $this->youtubeService->getJapanLeagueOneHighlights(
-//            $this->youtubeService->connect()
-//        );
+        $this->youtubeService->getUnitedRugbyChampionshipHighlights(
+            $this->youtubeService->connect()
+        );
+
+        $this->youtubeService->getSuperRugbyHighlights(
+            $this->youtubeService->connect()
+        );
+
+        $this->youtubeService->getJapanLeagueOneHighlights(
+            $this->youtubeService->connect()
+        );
 
         $this->youtubeService->getPremiershipRugbyHighlights(
+            $this->youtubeService->connect()
+        );
+
+        $this->youtubeService->getTop14Highlights(
             $this->youtubeService->connect()
         );
     }

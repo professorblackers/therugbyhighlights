@@ -85,6 +85,20 @@ class YoutubeService
         );
     }
 
+    public function getTop14Highlights(YouTube $service)
+    {
+        $response = $service->playlistItems->listPlaylistItems('snippet',
+            ['playlistId' => 'UUWrD2VhZdO-_W8QDBxiXmeg', 'maxResults' => 50],
+        );
+
+        $search = 'TOP 14 Saison 2023 2024';
+
+        $this->getEmbedUrl(
+            $this->getYoutubeTitleAndId($response, $search),
+            $this->fixtureRepository->getFixturesNoHighlights('Top 14')
+        );
+    }
+
     public function getYoutubeTitleAndId($response, $search): array
     {
         $videos = [];
