@@ -89,5 +89,12 @@ class HighlightsCommand extends Command
             'Instant Highlights',
             'Challenge Cup'
         );
+
+        $this->youtubeService->getHighlights(
+            'UUuIZRMChWOb0JZu7VvhlMWg',
+            10,
+            '公式ハイライト',
+            'Japan League One - Division Two'
+        );
     }
 }
