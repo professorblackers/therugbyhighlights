@@ -64,7 +64,12 @@ class YoutubeService
 
         foreach($videos as $video) {
             foreach ($fixtures as $fixture) {
-                if(str_contains($video[0], $fixture['homeTeam']) || str_contains($video[0], $fixture['alternativeHomeTeam']) && str_contains($video[0], $fixture['awayTeam']) || str_contains($video[0], $fixture['alternativeAwayTeam'])) {
+                if(
+                    str_contains($video[0], $fixture['homeTeam']) && str_contains($video[0], $fixture['awayTeam']) ||
+                    str_contains($video[0], $fixture['alternativeHomeTeam']) && str_contains($video[0], $fixture['alternativeAwayTeam']) ||
+                    str_contains($video[0], $fixture['homeTeam']) && str_contains($video[0], $fixture['alternativeAwayTeam']) ||
+                    str_contains($video[0], $fixture['alternativeHomeTeam']) && str_contains($video[0], $fixture['awayTeam'])
+                ) {
                     $this->fixtureRepository->update($fixture['id'], $videoString.$video[1]);
                 }
             }

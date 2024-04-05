@@ -75,5 +75,19 @@ class HighlightsCommand extends Command
             'TOP 14 Saison 2023 2024',
             'Top 14'
         );
+
+        $this->youtubeService->getHighlights(
+            'UUqn9RhigXvnvVUkKm5iAjxg',
+            10,
+            'Instant Highlights',
+            'Champions Cup'
+        );
+
+        $this->youtubeService->getHighlights(
+            'UUqn9RhigXvnvVUkKm5iAjxg',
+            10,
+            'Instant Highlights',
+            'Challenge Cup'
+        );
     }
 }
