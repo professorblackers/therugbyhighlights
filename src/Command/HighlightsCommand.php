@@ -41,24 +41,39 @@ class HighlightsCommand extends Command
 
     public function getHighlights()
     {
-        $this->youtubeService->getUnitedRugbyChampionshipHighlights(
-            $this->youtubeService->connect()
+        $this->youtubeService->getHighlights(
+            'UU-S6cXyil4qbIPfb2hrcH4w',
+            10,
+            'Instant Highlights',
+            'United Rugby Championship'
         );
 
-        $this->youtubeService->getSuperRugbyHighlights(
-            $this->youtubeService->connect()
+        $this->youtubeService->getHighlights(
+            'UUDOGExGCsrrt_RrGDgLuMww',
+            10,
+            'Super Rugby Pacific 2024',
+            'Super Rugby'
         );
 
-        $this->youtubeService->getJapanLeagueOneHighlights(
-            $this->youtubeService->connect()
+        $this->youtubeService->getHighlights(
+            'UUuIZRMChWOb0JZu7VvhlMWg',
+            10,
+            '公式ハイライト',
+            'Japan League One'
         );
 
-        $this->youtubeService->getPremiershipRugbyHighlights(
-            $this->youtubeService->connect()
+        $this->youtubeService->getHighlights(
+            'UULbW1klIl3T1XCp8hHYZGMw',
+            10,
+            'HIGHLIGHTS',
+            'Premiership Rugby'
         );
 
-        $this->youtubeService->getTop14Highlights(
-            $this->youtubeService->connect()
+        $this->youtubeService->getHighlights(
+            'UUWrD2VhZdO-_W8QDBxiXmeg',
+            10,
+            'TOP 14 Saison 2023 2024',
+            'Top 14'
         );
     }
 }

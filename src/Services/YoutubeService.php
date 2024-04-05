@@ -29,74 +29,19 @@ class YoutubeService
         return new YouTube($client);
     }
 
-    public function getUnitedRugbyChampionshipHighlights(YouTube $service)
+    public function getHighlights(string $playlistId, int $maxResults, string $search, string $league)
     {
+        $service = $this->connect();
+
         $response = $service->playlistItems->listPlaylistItems('snippet',
-            ['playlistId' => 'UU-S6cXyil4qbIPfb2hrcH4w', 'maxResults' => 8],
+            ['playlistId' => $playlistId, 'maxResults' => $maxResults],
         );
-
-        $search = 'Instant Highlights';
-
-        $this->getEmbedUrl(
-            $this->getYoutubeTitleAndId($response, $search),
-            $this->fixtureRepository->getFixturesNoHighlights('United Rugby Championship')
-        );
-    }
-
-    public function getSuperRugbyHighlights(YouTube $service)
-    {
-        $response = $service->playlistItems->listPlaylistItems('snippet',
-            ['playlistId' => 'UUDOGExGCsrrt_RrGDgLuMww', 'maxResults' => 8],
-        );
-
-        $search = 'Super Rugby Pacific 2024';
-
-        $this->getEmbedUrl(
-            $this->getYoutubeTitleAndId($response, $search),
-            $this->fixtureRepository->getFixturesNoHighlights('Super Rugby')
-        );
-    }
-
-    public function getJapanLeagueOneHighlights(YouTube $service)
-    {
-        $response = $service->playlistItems->listPlaylistItems('snippet',
-            ['playlistId' => 'UUuIZRMChWOb0JZu7VvhlMWg', 'maxResults' => 8],
-        );
-
-        $search = '公式ハイライト';
-
-        $this->getEmbedUrl(
-            $this->getYoutubeTitleAndId($response, $search),
-            $this->fixtureRepository->getFixturesNoHighlights('Japan League One')
-        );
-    }
-
-    public function getPremiershipRugbyHighlights(YouTube $service)
-    {
-        $response = $service->playlistItems->listPlaylistItems('snippet',
-            ['playlistId' => 'UULbW1klIl3T1XCp8hHYZGMw', 'maxResults' => 8],
-        );
-
-        $search = 'HIGHLIGHTS';
-
-        $this->getEmbedUrl(
-            $this->getYoutubeTitleAndId($response, $search),
-            $this->fixtureRepository->getFixturesNoHighlights('Premiership Rugby')
-        );
-    }
-
-    public function getTop14Highlights(YouTube $service)
-    {
-        $response = $service->playlistItems->listPlaylistItems('snippet',
-            ['playlistId' => 'UUWrD2VhZdO-_W8QDBxiXmeg', 'maxResults' => 50],
-        );
-
-        $search = 'TOP 14 Saison 2023 2024';
 
         $this->getEmbedUrl(
             $this->getYoutubeTitleAndId($response, $search),
             $this->fixtureRepository->getFixturesNoHighlights('Top 14')
         );
+
     }
 
     public function getYoutubeTitleAndId($response, $search): array
