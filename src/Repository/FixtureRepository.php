@@ -129,7 +129,7 @@ class FixtureRepository extends ServiceEntityRepository
         $today = new DateTime();
 
         return $this->createQueryBuilder('f')
-            ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights')
+            ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.alternativeHomeTeam, f.alternativeAwayTeam, f.kickOff, f.highlights')
             ->andWhere('f.highlights is NULL')
             ->andWhere('f.kickOff < :today')
             ->setParameter('today', $today)

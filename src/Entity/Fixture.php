@@ -23,6 +23,12 @@ class Fixture
     #[ORM\Column(length: 255)]
     private ?string $awayTeam = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $alternativeHomeTeam = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $alternativeAwayTeam = null;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $kickOff = null;
 
@@ -66,6 +72,30 @@ class Fixture
     public function setAwayTeam(string $awayTeam): static
     {
         $this->awayTeam = $awayTeam;
+
+        return $this;
+    }
+
+    public function getAlternativeHomeTeam(): ?string
+    {
+        return $this->alternativeHomeTeam;
+    }
+
+    public function setAlternativeHomeTeam(string $alternativeHomeTeam): static
+    {
+        $this->alternativeHomeTeam = $alternativeHomeTeam;
+
+        return $this;
+    }
+
+    public function getAlternativeAwayTeam(): ?string
+    {
+        return $this->alternativeAwayTeam;
+    }
+
+    public function setAlternativeAwayTeam(string $alternativeAwayTeam): static
+    {
+        $this->alternativeAwayTeam = $alternativeAwayTeam;
 
         return $this;
     }
