@@ -39,7 +39,7 @@ class YoutubeService
 
         $this->getEmbedUrl(
             $this->getYoutubeTitleAndId($response, $search),
-            $this->fixtureRepository->getFixturesNoHighlights('Top 14')
+            $this->fixtureRepository->getFixturesNoHighlights($league)
         );
 
     }
