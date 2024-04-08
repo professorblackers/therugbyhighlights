@@ -7,10 +7,10 @@
         </div>
         <div class="team-logos">
           <div class="team-logo">
-            <img :src="'/assets/img/' + fixture.homeTeam + '.png'" alt="{{ fixture.homeTeam }}">
+            <img :src="'/assets/img/' + fixture.homeTeam + '.png'" :alt="fixture.homeTeam">
           </div>
           <div class="team-logo">
-            <img :src="'/assets/img/' + fixture.awayTeam + '.png'" alt="{{ fixture.awayTeam }}">
+            <img :src="'/assets/img/' + fixture.awayTeam + '.png'" :alt="fixture.awayTeam">
           </div>
         </div>
       </div>
@@ -20,12 +20,12 @@
         </div>
         <div class="team-logos">
           <div class="team-logo">
-            <img v-if="page === 'Fixtures' || page === 'Archive'" :src="'/assets/img/' + fixture.homeTeam + '.png'" alt="{{ fixture.homeTeam }}">
-            <img v-else :src="'/assets/img/' + fixture.homeTeam + '.png'" alt="{{ fixture.homeTeam }}" class="inactive-fixture">
+            <img v-if="page === 'Fixtures' || page === 'Archive'" :src="'/assets/img/' + fixture.homeTeam + '.png'" :alt="fixture.homeTeam">
+            <img v-else :src="'/assets/img/' + fixture.homeTeam + '.png'" :alt="fixture.homeTeam" class="inactive-fixture">
           </div>
           <div class="team-logo">
-            <img v-if="page === 'Fixtures' || page === 'Archive'" :src="'/assets/img/' + fixture.awayTeam + '.png'" alt="{{ fixture.awayTeam }}">
-            <img v-else :src="'/assets/img/' + fixture.awayTeam + '.png'" alt="{{ fixture.awayTeam }}" class="inactive-fixture">
+            <img v-if="page === 'Fixtures' || page === 'Archive'" :src="'/assets/img/' + fixture.awayTeam + '.png'" :alt="fixture.awayTeam">
+            <img v-else :src="'/assets/img/' + fixture.awayTeam + '.png'" :alt="fixture.awayTeam" class="inactive-fixture">
           </div>
         </div>
       </div>
