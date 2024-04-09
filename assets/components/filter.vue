@@ -19,6 +19,9 @@
       <option value="Japan League One - Division Two">
         Japan League One - Division Two
       </option>
+      <option value="Japan League One - Division Three">
+        Japan League One - Division Three
+      </option>
       <option value="Super Rugby">
         Super Rugby
       </option>
