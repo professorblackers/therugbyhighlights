@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="fixture-card" v-for="fixture in fixtures" :key="fixture.id" :class="'fixture-' + fixture.id">
-      <div v-if="fixture.highlights" @click="getHighlightsVideo(fixture.highlights, fixture.homeTeam, fixture.awayTeam)">
+      <div v-if="fixture.highlights" @click="getHighlightsVideo(fixture.highlights, fixture.homeTeam, fixture.awayTeam, fixture.league)">
         <div class="league-name">
           <p>{{ fixture.league }}</p>
         </div>
@@ -41,7 +41,7 @@ export default {
   name: 'Fixture',
   props: ['fixtures', 'page'],
   methods: {
-    getHighlightsVideo(highlights, homeTeam, awayTeam) {
+    getHighlightsVideo(highlights, homeTeam, awayTeam, league) {
       const header = document.querySelector("header");
 
       header.classList.toggle ("hide-header");
@@ -49,7 +49,14 @@ export default {
       if(highlights === 'NoYouTubeVideo') {
         $.sweetModal({
           content: '<video width="660" height="415" controls><source src="/assets/video/'+homeTeam+' v '+awayTeam+'.mp4" type="video/mp4"></video>',
-
+          theme: $.sweetModal.THEME_DARK
+        });
+      } else if(league === 'Top 14') {
+        $.sweetModal({
+          content: '<a href="'+highlights+'" target="_blank"><svg class="play-button" xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24">\n' +
+              '    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>\n' +
+              '    <path d="m9 17 8-5-8-5z"></path>\n' +
+              '</svg></a>',
           theme: $.sweetModal.THEME_DARK
         });
       } else {
@@ -99,5 +106,14 @@ export default {
 .fixture-262 img {
   max-width: 110px;
   max-height: 110px;
+}
+
+.play-button {
+  fill: rgba(0, 0, 0, 1);
+  transition: fill 0.3s ease;
+}
+
+.play-button:hover {
+  fill: rgb(255, 255, 255);
 }
 </style>
