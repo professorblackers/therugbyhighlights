@@ -49,7 +49,6 @@ export default {
       if(highlights === 'NoYouTubeVideo') {
         $.sweetModal({
           content: '<video width="660" height="415" controls><source src="/assets/video/'+homeTeam+' v '+awayTeam+'.mp4" type="video/mp4"></video>',
-          theme: $.sweetModal.THEME_DARK
         });
       } else if(league === 'Top 14') {
         $.sweetModal({
@@ -57,12 +56,10 @@ export default {
               '    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>\n' +
               '    <path d="m9 17 8-5-8-5z"></path>\n' +
               '</svg></a>',
-          theme: $.sweetModal.THEME_DARK
         });
       } else {
         $.sweetModal({
           content: '<iframe width="660" height="415" src="'+highlights+'?&autoplay=1" title="YouTube Video Player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="video-player"></iframe>',
-          theme: $.sweetModal.THEME_DARK
         });
       }
 
@@ -114,6 +111,6 @@ export default {
 }
 
 .play-button:hover {
-  fill: rgb(255, 255, 255);
+  fill: rgba(243, 6, 6, 0.5);
 }
 </style>
