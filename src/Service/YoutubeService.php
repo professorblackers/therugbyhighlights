@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Service;
 
 use App\Entity\Fixture;
 use App\Repository\FixtureRepository;
@@ -12,17 +12,19 @@ class YoutubeService
 {
     protected EntityManager $entityManager;
     protected FixtureRepository $fixtureRepository;
+    private string $apiKey;
 
-    public function __construct(EntityManager $entityManager, FixtureRepository $fixtureRepository)
+    public function __construct(EntityManager $entityManager, FixtureRepository $fixtureRepository, string $apiKey)
     {
         $this->entityManager = $entityManager;
         $this->fixtureRepository = $entityManager->getRepository(Fixture::class);
+        $this->apiKey = $apiKey;
 
     }
 
     public function connect(): YouTube
     {
-        $apiKey = 'AIzaSyDaftCw7epAupgn1DpuDHzqC_VuRMDoYiM';
+        $apiKey = $this->apiKey;
 
         $client = new Client();
         $client->setDeveloperKey($apiKey);

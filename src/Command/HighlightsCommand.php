@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Services\YoutubeService;
+use App\Service\YoutubeService;
 use Doctrine\ORM\EntityManagerInterface as EntityManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
