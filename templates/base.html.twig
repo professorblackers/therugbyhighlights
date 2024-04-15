@@ -12,7 +12,14 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}The Rugby Highlights{% endblock %}</title>
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:url" content="https://www.therugbyhighlights.com/">
+    <meta property="og:title" content="The Rugby Highlights - Spoiler-Free Rugby Highlights">
+    <meta property="og:description" content="Relive the action from the best rugby leagues and competitions around the world, spoiler-free! Catch up on the Six Nations, Super Rugby and more!">
+    <meta name="description" content="Relive the action from the best rugby leagues and competitions around the world, spoiler-free! Catch up on the Six Nations, Super Rugby and more!">
+    <meta name="keywords" content="rugby highlights, spoiler-free rugby highlights, spoiler free rugby highlights">
+    <title>{% block title %}The Rugby Highlights - Spoiler-Free Rugby Highlights{% endblock %}</title>
     <link rel="icon" href="{% block icon %}{{ asset('/assets/img/favicon.ico') }}{% endblock %}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
