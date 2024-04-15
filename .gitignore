@@ -22,3 +22,5 @@ yarn-error.log
 /public/assets/video/
 /src/DataFixtures/
 /config/services.yaml
+robots.txt
+sitemap.xml
