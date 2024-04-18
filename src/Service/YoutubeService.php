@@ -63,6 +63,7 @@ class YoutubeService
     public function getEmbedUrl($videos, $fixtures)
     {
         $videoString = 'https://www.youtube.com/embed/';
+        $altVideoString = 'https://www.youtube.com/watch?v=';
 
         foreach($videos as $video) {
             foreach ($fixtures as $fixture) {
@@ -72,7 +73,11 @@ class YoutubeService
                     str_contains($video[0], $fixture['homeTeam']) && str_contains($video[0], $fixture['alternativeAwayTeam']) ||
                     str_contains($video[0], $fixture['alternativeHomeTeam']) && str_contains($video[0], $fixture['awayTeam'])
                 ) {
-                    $this->fixtureRepository->update($fixture['id'], $videoString.$video[1]);
+                    if($fixture['league'] == 'Top 14') {
+                        $this->fixtureRepository->update($fixture['id'], $altVideoString.$video[1]);
+                    } else {
+                        $this->fixtureRepository->update($fixture['id'], $videoString.$video[1]);
+                    }
                 }
 
                 // Temporary -> New Super Rugby highlights have uppercase team names
@@ -82,7 +87,11 @@ class YoutubeService
                     str_contains($video[0], strtoupper($fixture['homeTeam'])) && str_contains($video[0], strtoupper($fixture['alternativeAwayTeam'])) ||
                     str_contains($video[0], strtoupper($fixture['alternativeHomeTeam'])) && str_contains($video[0], strtoupper($fixture['awayTeam']))
                 ) {
-                    $this->fixtureRepository->update($fixture['id'], $videoString.$video[1]);
+                    if($fixture['league'] == 'Top 14') {
+                        $this->fixtureRepository->update($fixture['id'], $altVideoString.$video[1]);
+                    } else {
+                        $this->fixtureRepository->update($fixture['id'], $videoString.$video[1]);
+                    }
                 }
             }
         }
