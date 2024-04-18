@@ -105,6 +105,51 @@ export default {
   max-height: 110px;
 }
 
+.fixture-881 img {
+  max-width: 117px;
+  max-height: 117px;
+}
+
+.fixture-882 img {
+  max-width: 106px;
+  max-height: 106px;
+}
+
+.fixture-872 img {
+  max-width: 123px;
+  max-height: 123px;
+}
+
+.fixture-849 img {
+  max-width: 119px;
+  max-height: 119px;
+}
+
+.fixture-898 img {
+  max-width: 117px;
+  max-height: 117px;
+}
+
+.fixture-918 img {
+  max-width: 107px;
+  max-height: 107px;
+}
+
+.fixture-929 img {
+  max-width: 107px;
+  max-height: 107px;
+}
+
+.fixture-935 img {
+  max-width: 119px;
+  max-height: 119px;
+}
+
+.fixture-942 img {
+  max-width: 123px;
+  max-height: 123px;
+}
+
 .play-button {
   fill: rgba(0, 0, 0, 1);
   transition: fill 0.3s ease;

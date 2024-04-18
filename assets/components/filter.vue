@@ -7,38 +7,8 @@
     <option value="" disabled selected>
       Filter by League
     </option>
-    <option value="Six Nations">
-      Six Nations
-    </option>
-    <option value="Japan League One">
-      Japan League One
-    </option>
-    <option value="Japan League One - Division Two">
-      Japan League One - Division Two
-    </option>
-    <option value="Japan League One - Division Three">
-      Japan League One - Division Three
-    </option>
-    <option value="Super Rugby">
-      Super Rugby
-    </option>
-    <option value="United Rugby Championship">
-      United Rugby Championship
-    </option>
-    <option value="Premiership Rugby">
-      Premiership Rugby
-    </option>
-    <option value="Top 14">
-      Top 14
-    </option>
-    <option value="Champions Cup">
-      Champions Cup
-    </option>
-    <option value="Challenge Cup">
-      Challenge Cup
-    </option>
-    <option value="The Rugby Championship">
-      The Rugby Championship
+    <option :value="league.league" v-for="(league, index) in leagues">
+      {{league.league}}
     </option>
   </select>
 </template>
@@ -51,7 +21,7 @@ export default {
       league: '',
     };
   },
-  props: ['page'],
+  props: ['page', 'leagues'],
   methods: {
     onLeagueChange() {
       if(this.page === 'Fixtures') {

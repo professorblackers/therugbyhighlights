@@ -2,6 +2,7 @@
   <section>
     <filter-component
         @filtered-fixtures="filteredFixtures"
+        :leagues="leagues"
         :page="page"
     />
 
@@ -21,7 +22,8 @@ export default {
   data() {
     return {
       fixtures: [],
-      page: 'Fixtures'
+      page: 'Fixtures',
+      leagues: []
     };
   },
   components: {
@@ -40,10 +42,20 @@ export default {
     },
     filteredFixtures(filteredFixtures) {
       this.fixtures = filteredFixtures;
+    },
+    getLeagues: function () {
+      $.ajax({
+        type: "GET",
+        url: "/rugby/getLeagues",
+        success: (data) => {
+          this.leagues = data;
+        }
+      })
     }
   },
   created() {
-    this.getFixtures()
+    this.getFixtures();
+    this.getLeagues();
   }
 }
 </script>

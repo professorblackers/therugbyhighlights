@@ -150,4 +150,12 @@ class FixtureRepository extends ServiceEntityRepository
 
         return $fixture;
     }
+
+    public function getLeagues()
+    {
+        return $this->createQueryBuilder('f')
+            ->select('DISTINCT f.league')
+            ->getQuery()
+            ->getResult();
+    }
 }
