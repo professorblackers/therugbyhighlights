@@ -200,12 +200,12 @@ a:visited {
         right: 0;
     }
 
-    section{
-        padding: 160px 3%;
-    }
-
     .title {
         margin-left: 65px;
+    }
+
+    .title-text {
+        padding: 225px 0 0 120px
     }
 
     .hide-header {
