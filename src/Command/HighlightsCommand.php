@@ -25,13 +25,13 @@ class HighlightsCommand extends Command
 
     protected function configure(): void
     {
-        $this->setName('HighlightsCommand');
+        $this->setName('getHighlights');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        $io->title('Highlights Command');
+        $io->title($this->getName());
 
         $this->getHighlights();
 
@@ -102,6 +102,13 @@ class HighlightsCommand extends Command
             10,
             '公式ハイライト',
             'Japan League One - Division Three'
+        );
+
+        $this->youtubeService->getHighlights(
+            'UUIynwDVqRK7KTUy72_kSBhA',
+            10,
+            'HIGHLIGHTS',
+            'Major League Rugby'
         );
     }
 }
