@@ -1,4 +1,7 @@
 <template>
+  <loading-component
+      v-show="isLoading"
+  />
   <div class="container">
     <div class="fixture-card" v-for="fixture in fixtures" :key="fixture.id" :class="'fixture-' + fixture.id">
       <div v-if="fixture.highlights" @click="getHighlightsVideo(fixture.highlights, fixture.homeTeam, fixture.awayTeam, fixture.league)">
@@ -37,9 +40,19 @@
 </template>
 
 <script>
+import LoadingComponent from '../components/loading';
+
 export default {
   name: 'Fixture',
   props: ['fixtures', 'page'],
+  components: {
+    LoadingComponent
+  },
+  data() {
+    return {
+      isLoading: true
+    };
+  },
   methods: {
     getHighlightsVideo(highlights, homeTeam, awayTeam, league) {
       const header = document.querySelector("header");
@@ -81,6 +94,12 @@ export default {
       return date.toLocaleString('en-US', options);
     }
   },
+  mounted() {
+    // Simulate loading process
+    setTimeout(() => {
+      this.isLoading = false; // Set to false when loading is complete
+    }, 1000); // Adjust the timeout according to your actual loading time
+  }
 }
 </script>
 
