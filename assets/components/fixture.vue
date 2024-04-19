@@ -6,7 +6,7 @@
     <div class="fixture-card" v-for="fixture in fixtures" :key="fixture.id" :class="'fixture-' + fixture.id">
       <div v-if="fixture.highlights" @click="getHighlightsVideo(fixture.highlights, fixture.homeTeam, fixture.awayTeam, fixture.league)">
         <div class="league-name">
-          <p>{{ fixture.league }}</p>
+          <h2 class="league-text">{{ fixture.league }}</h2>
         </div>
         <div class="team-logos">
           <div class="team-logo">
@@ -19,7 +19,7 @@
       </div>
       <div v-else>
         <div class="league-name">
-          <p>{{ fixture.league }}</p>
+          <h2 class="league-text">{{ fixture.league }}</h2>
         </div>
         <div class="team-logos">
           <div class="team-logo">
@@ -180,5 +180,10 @@ export default {
 
 .play-button:hover {
   fill: rgba(63, 52, 52, 0.5);
+}
+
+.league-text {
+  font-size: 16px;
+  font-weight: 100;
 }
 </style>

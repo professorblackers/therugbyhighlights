@@ -40,6 +40,10 @@ header.sticky{
     margin-left: 40px;
 }
 
+.title-text {
+    padding: 70px 0 0 28px
+}
+
 .container {
     margin-top: 20px;
     display: block;
@@ -100,10 +104,6 @@ header.sticky{
     color: #333333;
     box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
     border-radius: 4px;
-}
-
-section{
-    padding: 90px 0;
 }
 
 .sticky .navbar a{
