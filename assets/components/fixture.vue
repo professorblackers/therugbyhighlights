@@ -179,6 +179,6 @@ export default {
 }
 
 .play-button:hover {
-  fill: rgba(243, 6, 6, 0.5);
+  fill: rgba(63, 52, 52, 0.5);
 }
 </style>
