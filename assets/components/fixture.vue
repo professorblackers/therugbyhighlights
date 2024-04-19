@@ -63,6 +63,10 @@ export default {
         $.sweetModal({
           content: '<video width="660" height="415" controls><source src="/assets/video/'+homeTeam+' v '+awayTeam+'.mp4" type="video/mp4"></video>',
         });
+      } else if(highlights === 'NoVideo') {
+        $.sweetModal({
+          content: '<h1>Highlights unavailable, apologies for the inconvenience.</h1>',
+        });
       } else if(league === 'Top 14') {
         $.sweetModal({
           content: '<a href="'+highlights+'" target="_blank"><svg class="play-button" xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24">\n' +
