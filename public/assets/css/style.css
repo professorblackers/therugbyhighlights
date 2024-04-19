@@ -41,7 +41,8 @@ header.sticky{
 }
 
 .title-text {
-    padding: 70px 0 0 28px
+    text-align: center;
+    margin-top: 85px;
 }
 
 .container {
@@ -205,10 +206,46 @@ a:visited {
     }
 
     .title-text {
-        padding: 225px 0 0 120px
+        text-align: center;
+        margin-top: 150px;
     }
 
     .hide-header {
         display: none;
+    }
+}
+
+@media (max-width:360px)  {
+    .title-text {
+        text-align: center;
+        margin-top: 220px;
+    }
+}
+
+@media (min-width:820px)  {
+    .title-text {
+        text-align: center;
+        margin-top: 220px;
+    }
+}
+
+@media (min-width:768px)  {
+    .title-text {
+        text-align: center;
+        margin-top: 160px;
+    }
+}
+
+@media (min-width:1024px)  {
+    .title-text {
+        text-align: center;
+        margin-top: 100px;
+    }
+}
+
+@media (min-width:912px)  {
+    .title-text {
+        text-align: center;
+        margin-top: 90px;
     }
 }
