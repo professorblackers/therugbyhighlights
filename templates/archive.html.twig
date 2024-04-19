@@ -8,8 +8,17 @@
 
 {% block body %}
     <h1 class="title-text">Archive</h1>
+    <h2 class="subtitle-text">Season Highlights</h2>
     <div id="archive"></div>
 {% endblock %}
+
+    {% block footer %}
+        <footer>
+            <div class="footer-content" style="margin: 10px auto 0 !important;">
+                <p>&copy; <span id="year"></span> The Rugby Highlights. All rights reserved.</p>
+            </div>
+        </footer>
+    {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
