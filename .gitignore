@@ -24,3 +24,4 @@ yarn-error.log
 /config/services.yaml
 robots.txt
 sitemap.xml
+.htaccess
