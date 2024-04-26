@@ -6,6 +6,12 @@
         :page="page"
     />
 
+    <team-filter-component
+        @filtered-fixtures="filteredFixtures"
+        :teams="teams"
+        :page="page"
+    />
+
     <fixture-component
         :fixtures="fixtures"
         :page="page"
@@ -16,6 +22,7 @@
 <script>
 import FixtureComponent from '../components/fixture';
 import FilterComponent from '../components/filter';
+import TeamFilterComponent from '../components/teamFilter';
 
 export default {
   name: 'Archive',
@@ -23,12 +30,14 @@ export default {
     return {
       fixtures: [],
       page: 'Archive',
-      leagues: []
+      leagues: [],
+      teams: []
     };
   },
   components: {
     FixtureComponent,
-    FilterComponent
+    FilterComponent,
+    TeamFilterComponent
   },
   methods: {
     getFixtures: function() {
@@ -51,11 +60,21 @@ export default {
           this.leagues = data;
         }
       })
+    },
+    getTeams: function () {
+      $.ajax({
+        type: "GET",
+        url: "/rugby/getTeams",
+        success: (data) => {
+          this.teams = data;
+        }
+      })
     }
   },
   created() {
     this.getFixtures();
     this.getLeagues();
+    this.getTeams();
   }
 }
 </script>

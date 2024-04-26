@@ -94,6 +94,22 @@ class FixtureRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function getTeamFixtures(string $value): mixed
+    {
+        $today = new DateTime();
+
+        return $this->createQueryBuilder('f')
+            ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights')
+            ->andWhere('f.homeTeam = :value')
+            ->orWhere('f.awayTeam = :value')
+            ->setParameter('value', $value)
+            ->andWhere('f.kickOff > :today')
+            ->setParameter('today', $today)
+            ->orderBy('f.kickOff', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * Get past fixtures filtered based on the $value parameter
      *
@@ -110,6 +126,24 @@ class FixtureRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('f')
             ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights')
             ->andWhere('f.league = :value')
+            ->setParameter('value', $value)
+            ->andWhere('f.kickOff < :date')
+            ->setParameter('date', $today)
+            ->orderBy('f.kickOff', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getPastTeamFixtures(string $value, int $daysAgo): mixed
+    {
+        $today = new DateTime();
+
+        $today->modify('-' . $daysAgo . ' days');
+
+        return $this->createQueryBuilder('f')
+            ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights')
+            ->andWhere('f.homeTeam = :value')
+            ->orWhere('f.awayTeam = :value')
             ->setParameter('value', $value)
             ->andWhere('f.kickOff < :date')
             ->setParameter('date', $today)
@@ -155,6 +189,14 @@ class FixtureRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('f')
             ->select('DISTINCT f.league')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getTeams()
+    {
+        return $this->createQueryBuilder('f')
+            ->select('DISTINCT f.homeTeam')
             ->getQuery()
             ->getResult();
     }

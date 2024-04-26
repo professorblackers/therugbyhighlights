@@ -67,4 +67,22 @@ class AppController extends AbstractController
     {
         return new JsonResponse($fixtureRepository->getLeagues());
     }
+
+    #[Route('/rugby/getTeams/', name: 'getTeams')]
+    public function getTeams(FixtureRepository $fixtureRepository): JsonResponse
+    {
+        return new JsonResponse($fixtureRepository->getTeams());
+    }
+
+    #[Route('/rugby/teamFixtures/{value}', name: 'getTeamFixtures')]
+    public function getTeamFixtures(FixtureRepository $fixtureRepository, string $value): JsonResponse
+    {
+        return new JsonResponse($fixtureRepository->getTeamFixtures($value));
+    }
+
+    #[Route('/rugby/past/teamFixtures/{value}', name: 'getPastTeamFixtures')]
+    public function getPastTeamFixtures(FixtureRepository $fixtureRepository, string $value): JsonResponse
+    {
+        return new JsonResponse($fixtureRepository->getPastTeamFixtures($value, 4));
+    }
 }
