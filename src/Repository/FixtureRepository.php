@@ -189,6 +189,7 @@ class FixtureRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('f')
             ->select('DISTINCT f.league')
+            ->orderBy('f.league', 'ASC')
             ->getQuery()
             ->getResult();
     }
@@ -197,6 +198,7 @@ class FixtureRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('f')
             ->select('DISTINCT f.homeTeam')
+            ->orderBy('f.homeTeam', 'ASC')
             ->getQuery()
             ->getResult();
     }
