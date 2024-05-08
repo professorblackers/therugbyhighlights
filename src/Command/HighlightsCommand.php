@@ -110,5 +110,12 @@ class HighlightsCommand extends Command
             'HIGHLIGHTS',
             'Major League Rugby'
         );
+
+        $this->youtubeService->getHighlights(
+            'UUu98ro1AIOu-4wtZxDRS6Tg',
+            10,
+            'PRO D2 Saison 2023 2024',
+            'Pro D2'
+        );
     }
 }

@@ -73,7 +73,7 @@ class YoutubeService
                     str_contains($video[0], $fixture['homeTeam']) && str_contains($video[0], $fixture['alternativeAwayTeam']) ||
                     str_contains($video[0], $fixture['alternativeHomeTeam']) && str_contains($video[0], $fixture['awayTeam'])
                 ) {
-                    if($fixture['league'] == 'Top 14') {
+                    if($fixture['league'] == 'Top 14' || $fixture['league'] == 'Pro D2') {
                         $this->fixtureRepository->update($fixture['id'], $altVideoString.$video[1]);
                     } else {
                         $this->fixtureRepository->update($fixture['id'], $videoString.$video[1]);
@@ -87,7 +87,7 @@ class YoutubeService
                     str_contains($video[0], strtoupper($fixture['homeTeam'])) && str_contains($video[0], strtoupper($fixture['alternativeAwayTeam'])) ||
                     str_contains($video[0], strtoupper($fixture['alternativeHomeTeam'])) && str_contains($video[0], strtoupper($fixture['awayTeam']))
                 ) {
-                    if($fixture['league'] == 'Top 14') {
+                    if($fixture['league'] == 'Top 14' || $fixture['league'] == 'Pro D2') {
                         $this->fixtureRepository->update($fixture['id'], $altVideoString.$video[1]);
                     } else {
                         $this->fixtureRepository->update($fixture['id'], $videoString.$video[1]);
