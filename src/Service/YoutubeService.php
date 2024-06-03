@@ -52,7 +52,6 @@ class YoutubeService
 
         foreach ($response as $video) {
             if (str_contains($video->snippet->title, $search)) {
-                echo $video->snippet->title . PHP_EOL;
                 $videos[] = [$video->snippet->title, $video->snippet->resourceId->videoId];
             }
         }
@@ -77,6 +76,8 @@ class YoutubeService
                         $this->fixtureRepository->update($fixture['id'], $altVideoString.$video[1]);
                     } else {
                         $this->fixtureRepository->update($fixture['id'], $videoString.$video[1]);
+                        echo "Video Title: " . $video[0] . PHP_EOL;
+                        echo "Fixture Updated: " . $fixture['id'] . PHP_EOL;
                     }
                 }
 
