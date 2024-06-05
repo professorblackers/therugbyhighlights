@@ -194,12 +194,27 @@ class FixtureRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function getTeams()
+    public function getTeams(): array
     {
-        return $this->createQueryBuilder('f')
+        $homeTeamsQuery = $this->createQueryBuilder('f')
             ->select('DISTINCT f.homeTeam')
             ->orderBy('f.homeTeam', 'ASC')
             ->getQuery()
             ->getResult();
+
+        $awayTeamsQuery = $this->createQueryBuilder('f')
+            ->select('DISTINCT f.awayTeam')
+            ->orderBy('f.awayTeam', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        $homeTeamNames = array_column($homeTeamsQuery, 'homeTeam');
+        $awayTeamNames = array_column($awayTeamsQuery, 'awayTeam');
+
+        $allTeams = array_unique(array_merge($homeTeamNames, $awayTeamNames));
+
+        sort($allTeams);
+
+        return $allTeams;
     }
 }

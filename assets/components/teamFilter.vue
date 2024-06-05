@@ -7,8 +7,8 @@
     <option value="" disabled selected>
       Filter by Team
     </option>
-    <option :value="team.homeTeam" v-for="(team, index) in teams">
-      {{team.homeTeam}}
+    <option :value="team" v-for="(team, index) in teams">
+      {{team}}
     </option>
   </select>
 </template>
