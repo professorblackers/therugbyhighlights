@@ -70,19 +70,7 @@ class YoutubeService
                     str_contains($video[0], $fixture['homeTeam']) && str_contains($video[0], $fixture['awayTeam']) ||
                     str_contains($video[0], $fixture['alternativeHomeTeam']) && str_contains($video[0], $fixture['alternativeAwayTeam']) ||
                     str_contains($video[0], $fixture['homeTeam']) && str_contains($video[0], $fixture['alternativeAwayTeam']) ||
-                    str_contains($video[0], $fixture['alternativeHomeTeam']) && str_contains($video[0], $fixture['awayTeam'])
-                ) {
-                    if($fixture['league'] == 'Top 14' || $fixture['league'] == 'Pro D2') {
-                        $this->fixtureRepository->update($fixture['id'], $altVideoString.$video[1]);
-                    } else {
-                        $this->fixtureRepository->update($fixture['id'], $videoString.$video[1]);
-                        echo "Video Title: " . $video[0] . PHP_EOL;
-                        echo "Fixture Updated: " . $fixture['id'] . PHP_EOL;
-                    }
-                }
-
-                // Temporary -> New Super Rugby highlights have uppercase team names
-                if(
+                    str_contains($video[0], $fixture['alternativeHomeTeam']) && str_contains($video[0], $fixture['awayTeam']) ||
                     str_contains($video[0], strtoupper($fixture['homeTeam'])) && str_contains($video[0], strtoupper($fixture['awayTeam'])) ||
                     str_contains($video[0], strtoupper($fixture['alternativeHomeTeam'])) && str_contains($video[0], strtoupper($fixture['alternativeAwayTeam'])) ||
                     str_contains($video[0], strtoupper($fixture['homeTeam'])) && str_contains($video[0], strtoupper($fixture['alternativeAwayTeam'])) ||
@@ -93,6 +81,8 @@ class YoutubeService
                     } else {
                         $this->fixtureRepository->update($fixture['id'], $videoString.$video[1]);
                     }
+                    echo "Video Title: " . $video[0] . PHP_EOL;
+                    echo "Fixture Updated: " . $fixture['id'] . PHP_EOL;
                 }
             }
         }
