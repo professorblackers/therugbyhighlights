@@ -4,7 +4,7 @@
   />
   <div class="container">
     <div class="fixture-card" v-for="fixture in fixtures" :key="fixture.id" :class="'fixture-' + fixture.id">
-      <div v-if="fixture.highlights" @click="getHighlightsVideo(fixture.highlights, fixture.homeTeam, fixture.awayTeam, fixture.league)">
+      <div v-if="fixture.highlights" @click="getHighlightsVideo(fixture.highlights, fixture.homeTeam, fixture.awayTeam, fixture.league)" class="clickable">
         <div class="league-name">
           <h2 class="league-text">{{ fixture.league }}</h2>
         </div>

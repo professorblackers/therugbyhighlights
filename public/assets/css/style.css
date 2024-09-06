@@ -171,6 +171,10 @@ footer {
     margin: 0;
 }
 
+.clickable {
+    cursor: pointer;
+}
+
 @media (max-width:767px)  {
     .video-player {
         width: 315px;
