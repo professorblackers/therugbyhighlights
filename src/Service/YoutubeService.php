@@ -7,19 +7,26 @@ use App\Repository\FixtureRepository;
 use Doctrine\ORM\EntityManagerInterface as EntityManager;
 use Google\Client;
 use Google\Service\YouTube;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class YoutubeService
 {
     protected EntityManager $entityManager;
     protected FixtureRepository $fixtureRepository;
     private string $apiKey;
+    private ParameterBagInterface $parameters;
 
-    public function __construct(EntityManager $entityManager, FixtureRepository $fixtureRepository, string $apiKey)
+    public function __construct(
+        EntityManager $entityManager,
+        FixtureRepository $fixtureRepository,
+        string $apiKey,
+        ParameterBagInterface $parameters
+    )
     {
         $this->entityManager = $entityManager;
         $this->fixtureRepository = $entityManager->getRepository(Fixture::class);
         $this->apiKey = $apiKey;
-
+        $this->parameters = $parameters;
     }
 
     public function connect(): YouTube
@@ -31,19 +38,25 @@ class YoutubeService
         return new YouTube($client);
     }
 
-    public function getHighlights(string $playlistId, int $maxResults, string $search, string $league)
+    public function getHighlights(): void
     {
         $service = $this->connect();
 
-        $response = $service->playlistItems->listPlaylistItems('snippet',
-            ['playlistId' => $playlistId, 'maxResults' => $maxResults],
-        );
+        $highlights = $this->parameters->get('highlights');
 
-        $this->getEmbedUrl(
-            $this->getYoutubeTitleAndId($response, $search),
-            $this->fixtureRepository->getFixturesNoHighlights($league)
-        );
+        foreach ($highlights as $highlight) {
+            if($highlight['active']) {
 
+                $response = $service->playlistItems->listPlaylistItems('snippet',
+                    ['playlistId' => $highlight['channelId'], 'maxResults' => 30],
+                );
+
+                $this->getEmbedUrl(
+                    $this->getYoutubeTitleAndId($response, $highlight['searchTerm']),
+                    $this->fixtureRepository->getFixturesNoHighlights($highlight['leagueName'])
+                );
+            }
+        }
     }
 
     public function getYoutubeTitleAndId($response, $search): array
@@ -65,22 +78,43 @@ class YoutubeService
         $altVideoString = 'https://www.youtube.com/watch?v=';
 
         foreach($videos as $video) {
+
+            $videoTitle = $video[0];
+
             foreach ($fixtures as $fixture) {
-                if(
-                    str_contains($video[0], $fixture['homeTeam']) && str_contains($video[0], $fixture['awayTeam']) ||
-                    str_contains($video[0], $fixture['alternativeHomeTeam']) && str_contains($video[0], $fixture['alternativeAwayTeam']) ||
-                    str_contains($video[0], $fixture['homeTeam']) && str_contains($video[0], $fixture['alternativeAwayTeam']) ||
-                    str_contains($video[0], $fixture['alternativeHomeTeam']) && str_contains($video[0], $fixture['awayTeam']) ||
-                    str_contains($video[0], strtoupper($fixture['homeTeam'])) && str_contains($video[0], strtoupper($fixture['awayTeam'])) ||
-                    str_contains($video[0], strtoupper($fixture['alternativeHomeTeam'])) && str_contains($video[0], strtoupper($fixture['alternativeAwayTeam'])) ||
-                    str_contains($video[0], strtoupper($fixture['homeTeam'])) && str_contains($video[0], strtoupper($fixture['alternativeAwayTeam'])) ||
-                    str_contains($video[0], strtoupper($fixture['alternativeHomeTeam'])) && str_contains($video[0], strtoupper($fixture['awayTeam']))
-                ) {
-                    if($fixture['league'] == 'Top 14' || $fixture['league'] == 'Pro D2') {
-                        $this->fixtureRepository->update($fixture['id'], $altVideoString.$video[1]);
-                    } else {
-                        $this->fixtureRepository->update($fixture['id'], $videoString.$video[1]);
+
+                $homeTeams = [
+                    $fixture['homeTeam'],
+                    $fixture['alternativeHomeTeam'],
+                    strtoupper($fixture['homeTeam']),
+                    strtoupper($fixture['alternativeHomeTeam'])
+                ];
+
+                $awayTeams = [
+                    $fixture['awayTeam'],
+                    $fixture['alternativeAwayTeam'],
+                    strtoupper($fixture['awayTeam']),
+                    strtoupper($fixture['alternativeAwayTeam'])
+                ];
+
+                $found = false;
+
+                foreach ($homeTeams as $homeTeam) {
+                    foreach ($awayTeams as $awayTeam) {
+                        if (str_contains($videoTitle, $homeTeam) && str_contains($videoTitle, $awayTeam)) {
+                            $found = true;
+                            break 2;
+                        }
                     }
+                }
+
+                if ($found) {
+                    $videoStringToUpdate = ($fixture['league'] == 'Top 14' || $fixture['league'] == 'Pro D2')
+                        ? $altVideoString . $video[1]
+                        : $videoString . $video[1];
+
+                    $this->fixtureRepository->update($fixture['id'], $videoStringToUpdate);
+
                     echo "Video Title: " . $video[0] . PHP_EOL;
                     echo "Fixture Updated: " . $fixture['id'] . PHP_EOL;
                 }

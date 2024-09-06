@@ -69,10 +69,14 @@ export default {
         });
       } else if(league === 'Top 14' || league === 'Pro D2') {
         $.sweetModal({
-          content: '<a href="'+highlights+'" target="_blank"><svg class="play-button" xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24">\n' +
+          content: '<a href="' + highlights + '" target="_blank"><svg class="play-button" xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24">\n' +
               '    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>\n' +
               '    <path d="m9 17 8-5-8-5z"></path>\n' +
               '</svg></a>',
+        });
+      } else if (highlights.includes("?&start=")) {
+        $.sweetModal({
+          content: '<iframe width="660" height="415" src="'+highlights+'&autoplay=1" title="YouTube Video Player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="video-player"></iframe>',
         });
       } else {
         $.sweetModal({
@@ -108,71 +112,6 @@ export default {
 </script>
 
 <style>
-.fixture-279 img {
-  max-width: 122px;
-  max-height: 122px;
-}
-
-.fixture-308 img {
-  max-width: 110px;
-  max-height: 110px;
-}
-
-.fixture-324 img {
-  max-width: 110px;
-  max-height: 110px;
-}
-
-.fixture-262 img {
-  max-width: 110px;
-  max-height: 110px;
-}
-
-.fixture-881 img {
-  max-width: 117px;
-  max-height: 117px;
-}
-
-.fixture-882 img {
-  max-width: 106px;
-  max-height: 106px;
-}
-
-.fixture-872 img {
-  max-width: 123px;
-  max-height: 123px;
-}
-
-.fixture-849 img {
-  max-width: 119px;
-  max-height: 119px;
-}
-
-.fixture-898 img {
-  max-width: 117px;
-  max-height: 117px;
-}
-
-.fixture-918 img {
-  max-width: 107px;
-  max-height: 107px;
-}
-
-.fixture-929 img {
-  max-width: 107px;
-  max-height: 107px;
-}
-
-.fixture-935 img {
-  max-width: 119px;
-  max-height: 119px;
-}
-
-.fixture-942 img {
-  max-width: 123px;
-  max-height: 123px;
-}
-
 .play-button {
   fill: rgba(0, 0, 0, 1);
   transition: fill 0.3s ease;

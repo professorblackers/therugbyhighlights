@@ -63,7 +63,7 @@ header.sticky{
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 330px;
     margin-left: 10px;
     background-color: #333333;
     color: #eeeeee;
@@ -126,6 +126,7 @@ header.sticky{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 300px;
     margin-left: 10px;
+    min-height: 162px;
 }
 
 .team-logos {
