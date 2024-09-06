@@ -4,6 +4,7 @@ namespace App\Command;
 
 use App\Service\YoutubeService;
 use Doctrine\ORM\EntityManagerInterface as EntityManager;
+use Google\Service\Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -28,6 +29,9 @@ class HighlightsCommand extends Command
         $this->setName('getHighlights');
     }
 
+    /**
+     * @throws Exception
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);

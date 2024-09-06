@@ -2,10 +2,10 @@
 
 namespace App\Service;
 
-use App\Entity\Fixture;
 use App\Repository\FixtureRepository;
 use Doctrine\ORM\EntityManagerInterface as EntityManager;
 use Google\Client;
+use Google\Service\Exception;
 use Google\Service\YouTube;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
@@ -24,7 +24,7 @@ class YoutubeService
     )
     {
         $this->entityManager = $entityManager;
-        $this->fixtureRepository = $entityManager->getRepository(Fixture::class);
+        $this->fixtureRepository = $fixtureRepository;
         $this->apiKey = $apiKey;
         $this->parameters = $parameters;
     }
@@ -38,6 +38,9 @@ class YoutubeService
         return new YouTube($client);
     }
 
+    /**
+     * @throws Exception
+     */
     public function getHighlights(): void
     {
         $service = $this->connect();
@@ -72,7 +75,7 @@ class YoutubeService
         return $videos;
     }
 
-    public function getEmbedUrl($videos, $fixtures)
+    public function getEmbedUrl($videos, $fixtures): void
     {
         $videoString = 'https://www.youtube.com/embed/';
         $altVideoString = 'https://www.youtube.com/watch?v=';
