@@ -51,7 +51,7 @@ class YoutubeService
             if($highlight['active']) {
 
                 $response = $service->playlistItems->listPlaylistItems('snippet',
-                    ['playlistId' => $highlight['channelId'], 'maxResults' => 30],
+                    ['playlistId' => $highlight['channelId'], 'maxResults' => 10],
                 );
 
                 $this->getEmbedUrl(
