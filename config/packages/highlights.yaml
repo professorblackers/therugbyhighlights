@@ -3,8 +3,8 @@ parameters:
 #     Club Fixtures
     - channelId: 'UU-S6cXyil4qbIPfb2hrcH4w'
       leagueName: 'United Rugby Championship'
-      searchTerm: 'Instant Highlights'
-      active: false
+      searchTerm: 'Highlights'
+      active: true
     - channelId: 'UUDOGExGCsrrt_RrGDgLuMww'
       leagueName: 'Super Rugby'
       searchTerm: 'Super Rugby Pacific 2024'
@@ -27,7 +27,7 @@ parameters:
       active: false
     - channelId: 'UUWrD2VhZdO-_W8QDBxiXmeg'
       leagueName: 'Top 14'
-      searchTerm: 'TOP 14 Saison 2023 2024'
+      searchTerm: 'TOP 14 Saison 2024-2025'
       active: true
     - channelId: 'UUu98ro1AIOu-4wtZxDRS6Tg'
       leagueName: 'Pro D2'

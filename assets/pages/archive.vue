@@ -1,13 +1,18 @@
 <template>
   <section>
-    <filter-component
-        @filtered-fixtures="filteredFixtures"
+    <season-filter-component
+        @filter-season="filterSeason"
+        :page="page"
+    />
+
+    <league-filter-component
+        @filter-league="filterLeague"
         :leagues="leagues"
         :page="page"
     />
 
     <team-filter-component
-        @filtered-fixtures="filteredFixtures"
+        @filter-team="filterTeam"
         :teams="teams"
         :page="page"
     />
@@ -21,7 +26,8 @@
 
 <script>
 import FixtureComponent from '../components/fixture';
-import FilterComponent from '../components/filter';
+import SeasonFilterComponent from "../components/seasonFilter";
+import LeagueFilterComponent from "../components/leagueFilter";
 import TeamFilterComponent from '../components/teamFilter';
 
 export default {
@@ -31,26 +37,47 @@ export default {
       fixtures: [],
       page: 'Archive',
       leagues: [],
-      teams: []
+      teams: [],
+      currentSeason: '2024-2025'
     };
   },
   components: {
     FixtureComponent,
-    FilterComponent,
+    SeasonFilterComponent,
+    LeagueFilterComponent,
     TeamFilterComponent
   },
   methods: {
     getFixtures: function() {
       $.ajax({
         type: "GET",
-        url: "/rugby/getPastFixtures/",
+        url: "/rugby/getPastFixtures/" + this.currentSeason,
         success: (data) => {
           this.fixtures = data;
         }
       })
     },
-    filteredFixtures(filteredFixtures) {
-      this.fixtures = filteredFixtures;
+    filterSeason(season) {
+      this.currentSeason = season;
+      this.getFixtures();
+    },
+    filterLeague(league) {
+      $.ajax({
+        type: "GET",
+        url: "/rugby/getPastFixtures/" + this.currentSeason + "/" + league,
+        success: (data) => {
+          this.fixtures = data;
+        }
+      })
+    },
+    filterTeam(team) {
+      $.ajax({
+        type: "GET",
+        url: "/rugby/getPastFixturesByTeam/" + this.currentSeason + "/" + team,
+        success: (data) => {
+          this.fixtures = data;
+        }
+      })
     },
     getLeagues: function () {
       $.ajax({

@@ -7,82 +7,159 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use DateTime;
+use DateMalformedStringException;
 
 class AppController extends AbstractController
 {
+    /**
+     * Renders the homepage
+     *
+     * @return Response
+     */
     #[Route('/', name: 'rugby')]
     public function index(): Response
     {
-        return $this->render('index.html.twig', [
-        ]);
+        return $this->render('index.html.twig');
     }
 
-    #[Route('/fixtures', name: 'fixtures')]
-    public function fixtures(FixtureRepository $fixtureRepository): Response
+    /**
+     * Queries the database for recent fixtures to be displayed on the homepage
+     *
+     * @param FixtureRepository $fixtureRepository
+     * @return JsonResponse
+     * @throws DateMalformedStringException
+     */
+    #[Route('/rugby/getRecentFixtures/', name: 'getRecentFixtures')]
+    public function getRecentFixtures(FixtureRepository $fixtureRepository): JsonResponse
     {
-        return $this->render('fixtures.html.twig', [
-        ]);
+        return new JsonResponse($fixtureRepository->getRecentFixtures());
     }
 
+    /**
+     * Renders the archive
+     *
+     * @return Response
+     */
     #[Route('/archive', name: 'archive')]
-    public function archive(FixtureRepository $fixtureRepository): Response
+    public function archive(): Response
     {
-        return $this->render('archive.html.twig', [
-        ]);
+        return $this->render('archive.html.twig');
     }
 
-    #[Route('/rugby/getFixtures/', name: 'getFixtures')]
-    public function getFixtures(FixtureRepository $fixtureRepository): JsonResponse
+    /**
+     * Queries the database for past fixtures by season to be displayed on the archive
+     *
+     * @param FixtureRepository $fixtureRepository
+     * @param string $season
+     * @return JsonResponse
+     * @throws DateMalformedStringException
+     */
+    #[Route('/rugby/getPastFixtures/{season}', name: 'getPastFixturesBySeason')]
+    public function getPastFixturesBySeason(FixtureRepository $fixtureRepository, string $season): JsonResponse
     {
-        return new JsonResponse($fixtureRepository->getFixtures());
+        return new JsonResponse($fixtureRepository->getPastFixturesBySeason($season));
     }
 
-    #[Route('/rugby/getUpcomingFixtures/', name: 'getUpcomingFixtures')]
-    public function getUpcomingFixtures(FixtureRepository $fixtureRepository): JsonResponse
+    /**
+     * Queries the database for past fixtures by season and league to be displayed on the archive
+     *
+     * @param FixtureRepository $fixtureRepository
+     * @param string $season
+     * @param string $league
+     * @return JsonResponse
+     * @throws DateMalformedStringException
+     */
+    #[Route('/rugby/getPastFixtures/{season}/{league}', name: 'getPastFixturesByLeague')]
+    public function getPastFixturesByLeague(FixtureRepository $fixtureRepository, string $season, string $league): JsonResponse
     {
-        return new JsonResponse($fixtureRepository->getUpcomingFixtures());
+        return new JsonResponse($fixtureRepository->getPastFixturesByLeague($season, $league));
     }
 
-    #[Route('/rugby/getPastFixtures/', name: 'getPastFixtures')]
-    public function getPastFixtures(FixtureRepository $fixtureRepository): JsonResponse
-    {
-        return new JsonResponse($fixtureRepository->getPastFixtures(4));
-    }
-
-    #[Route('/rugby/fixtures/{value}', name: 'getFilteredFixtures')]
-    public function getFilteredFixtures(FixtureRepository $fixtureRepository, string $value): JsonResponse
-    {
-        return new JsonResponse($fixtureRepository->getFilteredFixtures($value));
-    }
-
-    #[Route('/rugby/past/fixtures/{value}', name: 'getPastFilteredFixtures')]
-    public function getPastFilteredFixtures(FixtureRepository $fixtureRepository, string $value): JsonResponse
-    {
-        return new JsonResponse($fixtureRepository->getPastFilteredFixtures($value, 4));
-    }
-
+    /**
+     * Queries the database for leagues to be used in the league filter on the archive and fixtures page
+     *
+     * @param FixtureRepository $fixtureRepository
+     * @return JsonResponse
+     */
     #[Route('/rugby/getLeagues/', name: 'getLeagues')]
     public function getLeagues(FixtureRepository $fixtureRepository): JsonResponse
     {
         return new JsonResponse($fixtureRepository->getLeagues());
     }
 
+    /**
+     * Queries the database for past fixtures by season and team to be displayed on the archive
+     *
+     * @param FixtureRepository $fixtureRepository
+     * @param string $season
+     * @param string $team
+     * @return JsonResponse
+     * @throws DateMalformedStringException
+     */
+    #[Route('/rugby/getPastFixturesByTeam/{season}/{team}', name: 'getPastFixturesByTeam')]
+    public function getPastFixturesByTeam(FixtureRepository $fixtureRepository, string $season, string $team): JsonResponse
+    {
+        return new JsonResponse($fixtureRepository->getPastFixturesByTeam($season, $team));
+    }
+
+    /**
+     * Queries the database for teams to be used in the team filter on the archive and fixtures page
+     *
+     * @param FixtureRepository $fixtureRepository
+     * @return JsonResponse
+     */
     #[Route('/rugby/getTeams/', name: 'getTeams')]
     public function getTeams(FixtureRepository $fixtureRepository): JsonResponse
     {
         return new JsonResponse($fixtureRepository->getTeams());
     }
 
-    #[Route('/rugby/teamFixtures/{value}', name: 'getTeamFixtures')]
-    public function getTeamFixtures(FixtureRepository $fixtureRepository, string $value): JsonResponse
+    /**
+     * Renders the fixtures page
+     *
+     * @return Response
+     */
+    #[Route('/fixtures', name: 'fixtures')]
+    public function fixtures(): Response
     {
-        return new JsonResponse($fixtureRepository->getTeamFixtures($value));
+        return $this->render('fixtures.html.twig');
     }
 
-    #[Route('/rugby/past/teamFixtures/{value}', name: 'getPastTeamFixtures')]
-    public function getPastTeamFixtures(FixtureRepository $fixtureRepository, string $value): JsonResponse
+    /**
+     * Queries the database for fixtures to be displayed on the fixtures page
+     *
+     * @param FixtureRepository $fixtureRepository
+     * @return JsonResponse
+     */
+    #[Route('/rugby/getFixtures/', name: 'getFixtures')]
+    public function getFixtures(FixtureRepository $fixtureRepository): JsonResponse
     {
-        return new JsonResponse($fixtureRepository->getPastTeamFixtures($value, 4));
+        return new JsonResponse($fixtureRepository->getFixtures());
+    }
+
+    /**
+     * Queries the database for fixtures by league to be displayed on the fixtures page
+     *
+     * @param FixtureRepository $fixtureRepository
+     * @param string $league
+     * @return JsonResponse
+     */
+    #[Route('/rugby/getFixtures/{league}', name: 'getFixturesByLeague')]
+    public function getFixturesByLeague(FixtureRepository $fixtureRepository, string $league): JsonResponse
+    {
+        return new JsonResponse($fixtureRepository->getFixturesByLeague($league));
+    }
+
+    /**
+     * Queries the database for fixtures by team to be displayed on the fixtures page
+     *
+     * @param FixtureRepository $fixtureRepository
+     * @param string $team
+     * @return JsonResponse
+     */
+    #[Route('/rugby/getFixturesByTeam/{team}', name: 'getFixturesByTeam')]
+    public function getFixturesByTeam(FixtureRepository $fixtureRepository, string $team): JsonResponse
+    {
+        return new JsonResponse($fixtureRepository->getFixturesByTeam($team));
     }
 }

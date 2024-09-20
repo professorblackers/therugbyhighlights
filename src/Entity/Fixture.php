@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\FixtureRepository;
+use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -12,7 +13,7 @@ class Fixture
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    public $id = null;
+    public ?int $id = null;
 
     #[ORM\Column(length: 255)]
     private ?string $league = null;
@@ -30,10 +31,13 @@ class Fixture
     private ?string $alternativeAwayTeam = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $kickOff = null;
+    private ?DateTimeInterface $kickOff = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $highlights = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $season = null;
 
     public function getId(): ?int
     {
@@ -100,12 +104,12 @@ class Fixture
         return $this;
     }
 
-    public function getKickOff(): ?\DateTimeInterface
+    public function getKickOff(): ?DateTimeInterface
     {
         return $this->kickOff;
     }
 
-    public function setKickOff(\DateTimeInterface $kickOff): static
+    public function setKickOff(DateTimeInterface $kickOff): static
     {
         $this->kickOff = $kickOff;
 
@@ -120,6 +124,18 @@ class Fixture
     public function setHighlights(?string $highlights): static
     {
         $this->highlights = $highlights;
+
+        return $this;
+    }
+
+    public function getSeason(): ?string
+    {
+        return $this->season;
+    }
+
+    public function setSeason(string $season): static
+    {
+        $this->season = $season;
 
         return $this;
     }

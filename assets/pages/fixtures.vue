@@ -1,15 +1,15 @@
 <template>
   <section>
-    <filter-component
-        @filtered-fixtures="filteredFixtures"
+    <league-filter-component
+        @filter-league="filterLeague"
         :leagues="leagues"
         :page="page"
     />
 
     <team-filter-component
-      @filtered-fixtures="filteredFixtures"
-      :teams="teams"
-      :page="page"
+        @filter-team="filterTeam"
+        :teams="teams"
+        :page="page"
     />
 
     <fixture-component
@@ -21,8 +21,8 @@
 
 <script>
 import FixtureComponent from '../components/fixture';
-import FilterComponent from '../components/filter';
-import TeamFilterComponent from '../components/teamFilter';
+import LeagueFilterComponent from "../components/leagueFilter.vue";
+import TeamFilterComponent from "../components/teamFilter.vue";
 
 export default {
   name: 'Fixtures',
@@ -36,21 +36,36 @@ export default {
   },
   components: {
     FixtureComponent,
-    FilterComponent,
+    LeagueFilterComponent,
     TeamFilterComponent
   },
   methods: {
     getFixtures: function() {
       $.ajax({
         type: "GET",
-        url: "/rugby/getUpcomingFixtures/",
+        url: "/rugby/getFixtures/",
         success: (data) => {
           this.fixtures = data;
         }
       })
     },
-    filteredFixtures(filteredFixtures) {
-      this.fixtures = filteredFixtures;
+    filterLeague(league) {
+      $.ajax({
+        type: "GET",
+        url: "/rugby/getFixtures/" + league,
+        success: (data) => {
+          this.fixtures = data;
+        }
+      })
+    },
+    filterTeam(team) {
+      $.ajax({
+        type: "GET",
+        url: "/rugby/getFixturesByTeam/" + team,
+        success: (data) => {
+          this.fixtures = data;
+        }
+      })
     },
     getLeagues: function () {
       $.ajax({
