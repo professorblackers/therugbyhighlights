@@ -24,7 +24,7 @@ parameters:
     - channelId: 'UULbW1klIl3T1XCp8hHYZGMw'
       leagueName: 'Premiership Rugby'
       searchTerm: 'HIGHLIGHTS'
-      active: false
+      active: true
     - channelId: 'UUWrD2VhZdO-_W8QDBxiXmeg'
       leagueName: 'Top 14'
       searchTerm: 'TOP 14 Saison 2024-2025'
@@ -64,5 +64,5 @@ parameters:
       active: true
     - channelId: 'UUE28rwYoaV7jvU6GVzdu_GQ'
       leagueName: 'Pacific Nations Cup'
-      searchTerm: 'Pacific Nations Cup | Match Highlights'
-      active: true
+      searchTerm: 'Match Highlights'
+      active: false
