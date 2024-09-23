@@ -70,8 +70,18 @@ export default {
   },
   computed: {
     todayFixtures() {
-      const today = new Date().toISOString().slice(0, 10);
-      return this.fixtures.filter(fixture => fixture.kickOff.date.slice(0, 10) === today);
+      const today = new Date();
+
+      const timezoneOffset = today.getTimezoneOffset() * 60000;
+      const localDate = new Date(today - timezoneOffset).toISOString().slice(0, 10);
+
+      return this.fixtures.filter(fixture => {
+        const fixtureDate = new Date(fixture.kickOff.date);
+        const fixtureOffset = fixtureDate.getTimezoneOffset() * 60000;
+        const fixtureLocalDate = new Date(fixtureDate - fixtureOffset).toISOString().slice(0, 10);
+
+        return fixtureLocalDate === localDate;
+      });
     },
     yesterdayFixtures() {
       const yesterday = new Date();
