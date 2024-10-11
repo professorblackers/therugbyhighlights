@@ -212,6 +212,20 @@ footer {
     font-weight:normal;
 }
 
+.fixture-card-empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 340px;
+    margin-left: 10px;
+    min-height: 162px;
+    font-size: 30px;
+}
+
 @media (max-width:767px)  {
     .video-player {
         width: 315px;
@@ -290,6 +304,10 @@ footer {
 
     .select-new {
         width: 250px;
+    }
+
+    .fixture-card-empty {
+        width: 370px;
     }
 }
 

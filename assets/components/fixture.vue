@@ -3,7 +3,7 @@
       v-show="isLoading"
   />
   <div class="container">
-    <div class="fixture-card" v-for="fixture in fixtures" :key="fixture.id" :class="'fixture-' + fixture.id">
+    <div v-if="hasFixtures" class="fixture-card" v-for="fixture in fixtures" :key="fixture.id" :class="'fixture-' + fixture.id">
       <div v-if="fixture.highlights" @click="getHighlightsVideo(fixture.highlights, fixture.homeTeam, fixture.awayTeam, fixture.league)" class="clickable">
         <div class="league-name">
           <h2 class="league-text">{{ fixture.league }}</h2>
@@ -36,6 +36,9 @@
         <p>{{ formatKickoffTime(fixture.kickOff.date) }}</p>
       </div>
     </div>
+    <div v-else class="fixture-card-empty">
+      <p>No Fixtures Available</p>
+    </div>
   </div>
 </template>
 
@@ -52,6 +55,11 @@ export default {
     return {
       isLoading: true
     };
+  },
+  computed: {
+    hasFixtures() {
+      return this.fixtures && this.fixtures.length > 0;
+    }
   },
   methods: {
     getHighlightsVideo(highlights, homeTeam, awayTeam, league) {
